@@ -56,7 +56,7 @@ function Article() {
             <p className="mt-6 text-xl text-muted-foreground leading-relaxed">{a.excerpt}</p>
             <div className="mt-8 flex items-center gap-4">
               <div className="h-11 w-11 rounded-full gradient-luxury grid place-items-center text-white text-xs font-semibold">
-                {a.author.split(" ").map((p) => p[0]).join("")}
+                {a.author.split(" ").map((p: string) => p[0]).join("")}
               </div>
               <div className="text-sm">
                 <div className="font-medium text-ink">{a.author}</div>
