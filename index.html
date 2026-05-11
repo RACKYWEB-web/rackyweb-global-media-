@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RACKYWEB GLOBAL MEDIA — Where Business Meets Innovation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─── TOKENS ─────────────────────────────────── */
+:root{
+  --black:#0a0a0a;--black-soft:#111;--black-mid:#1a1a1a;
+  --gold:#C9A84C;--gold-light:#E8C96A;--gold-dark:#A07830;--gold-pale:#F5E8C0;
+  --white:#fff;--white-soft:#F8F7F4;--white-warm:#F2EFE8;
+  --em:#1A7A4A;--em-light:#22A862;--em-dark:#0F5233;--em-pale:#E8F5EE;
+  --g1:#F5F5F3;--g2:#E8E6E1;--g3:#C8C4BB;--g4:#9A9590;--g5:#6B6560;--g6:#4A4540;--g7:#2E2B26;
+  --fd:'Playfair Display',Georgia,serif;
+  --fb:'DM Sans',system-ui,sans-serif;
+  --fe:'Cormorant Garamond',Georgia,serif;
+  --sh-gold:0 4px 30px rgba(201,168,76,.25);
+  --sh-card:0 8px 40px rgba(0,0,0,.08);
+  --sh-hover:0 20px 60px rgba(0,0,0,.15);
+  --ease:cubic-bezier(.4,0,.2,1);
+  --nav:72px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--fb);background:var(--white);color:var(--black);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+ul{list-style:none}
+input,textarea,select{font-family:inherit}
+
+/* ─── PAGE SYSTEM ──────────────────────────────── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
+
+/* ─── NAV ─────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav);display:flex;align-items:center;padding:0 48px;transition:all .4s var(--ease)}
+.nav.scrolled{background:rgba(10,10,10,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12)}
+.nav.light{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--g2)}
+.nav.light .nav-logo,.nav.light .nav-link,.nav.light .nb-ghost{color:var(--black)}
+.nav.light .nav-link:hover{color:var(--gold-dark)}
+.nav.light .ham span{background:var(--black)}
+
+.nav-brand{display:flex;align-items:center;gap:12px;margin-right:auto}
+.nav-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:900;font-size:16px;color:#fff;letter-spacing:-.5px}
+.nav-logo{font-family:var(--fd);font-weight:700;font-size:18px;letter-spacing:.5px;color:#fff;line-height:1.1}
+.nav-logo span{display:block;font-size:9px;font-family:var(--fb);font-weight:400;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-link{font-size:13px;font-weight:500;color:rgba(255,255,255,.85);letter-spacing:.3px;transition:color .3s;position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;right:100%;height:1px;background:var(--gold);transition:right .3s var(--ease)}
+.nav-link:hover{color:var(--gold)}
+.nav-link:hover::after,.nav-link.on::after{right:0}
+.nav-link.on{color:var(--gold)}
+
+.nav-actions{display:flex;align-items:center;gap:12px;margin-left:36px}
+.nb-ghost{padding:8px 18px;font-size:13px;font-weight:500;color:#fff;border:1px solid rgba(255,255,255,.28);transition:all .3s}
+.nb-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.nb-gold{padding:9px 20px;font-size:13px;font-weight:600;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;transition:all .3s}
+.nb-gold:hover{transform:translateY(-1px);box-shadow:var(--sh-gold)}
+
+.ham{display:none;flex-direction:column;gap:5px;padding:4px}
+.ham span{width:24px;height:2px;background:#fff;transition:all .3s;display:block}
+
+.mob-menu{display:none;position:fixed;top:var(--nav);left:0;right:0;background:rgba(10,10,10,.98);backdrop-filter:blur(20px);padding:28px 24px;z-index:999;flex-direction:column;gap:0;border-bottom:1px solid rgba(201,168,76,.18)}
+.mob-menu.open{display:flex}
+.mob-link{padding:14px 0;font-size:16px;font-weight:500;color:rgba(255,255,255,.8);border-bottom:1px solid rgba(255,255,255,.05);transition:color .2s}
+.mob-link:hover{color:var(--gold)}
+
+/* ─── PAGE TRANSITION ──────────────────────────── */
+.pt{position:fixed;inset:0;background:var(--black);z-index:9000;transform:translateY(100%);transition:transform .5s var(--ease);pointer-events:none}
+.pt.in{transform:translateY(0)}
+.pt.out{transform:translateY(-100%)}
+
+/* ─── PROGRESS BAR ─────────────────────────────── */
+.pbar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--em));z-index:9001;width:0;transition:width .1s}
+
+/* ─── TOAST ─────────────────────────────────────── */
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--black);color:#fff;padding:14px 28px;font-size:14px;font-weight:500;z-index:9002;transition:transform .4s var(--ease);display:flex;align-items:center;gap:10px;box-shadow:0 12px 40px rgba(0,0,0,.4)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast-icon{color:var(--gold);font-size:16px}
+
+/* ─── FLOATING ──────────────────────────────────── */
+.wa-btn{position:fixed;bottom:28px;right:28px;z-index:998;width:56px;height:56px;background:#25D366;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;box-shadow:0 8px 24px rgba(37,211,102,.4);animation:bob 3s ease-in-out infinite}
+.wa-btn:hover{transform:scale(1.1)!important}
+.wa-btn svg{width:26px;height:26px;color:#fff}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.chat-pill{position:fixed;bottom:96px;right:28px;z-index:998;background:var(--black);color:#fff;padding:10px 18px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;box-shadow:0 8px 24px rgba(0,0,0,.3);transition:all .3s}
+.chat-pill:hover{background:var(--gold-dark)}
+.live-dot{width:7px;height:7px;background:var(--em-light);border-radius:50%;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+
+/* ─── REVEAL / ANIMATIONS ─────────────────────── */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes meshFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+@keyframes tickMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes scrollLine{0%,100%{transform:scaleY(1);opacity:1}50%{transform:scaleY(.5);opacity:.4}}
+
+/* ─── BUTTONS ────────────────────────────────────── */
+.btn-p{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-weight:600;font-size:14px;letter-spacing:.3px;transition:all .3s var(--ease);position:relative;overflow:hidden}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(201,168,76,.4)}
+.btn-s{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:500;font-size:14px;transition:all .3s;backdrop-filter:blur(10px)}
+.btn-s:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-dark{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;background:var(--black);color:#fff;font-weight:600;font-size:14px;transition:all .3s}
+.btn-dark:hover{background:var(--gold-dark)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;border:1px solid var(--black);color:var(--black);font-weight:600;font-size:14px;transition:all .3s}
+.btn-outline:hover{background:var(--black);color:#fff}
+
+/* ─── SECTION COMMONS ─────────────────────────── */
+.sec{padding:100px 0}
+.si{max-width:1200px;margin:0 auto;padding:0 48px}
+.sh{margin-bottom:60px}
+.sh.c{text-align:center}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:14px}
+.tag::before{content:'';width:24px;height:1px;background:var(--gold)}
+.tag.center::before,.sh.c .tag::before{display:none}
+.h1{font-family:var(--fd);font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.1;letter-spacing:-1px;color:var(--black)}
+.h1.wh{color:#fff}
+.h1 em{color:var(--gold);font-style:italic}
+.h1 .eg{color:var(--em)}
+.lead{font-size:18px;font-weight:300;color:var(--g5);max-width:540px;line-height:1.7;margin-top:14px}
+.lead.wh{color:rgba(255,255,255,.55)}
+
+/* ─── PAGE HEADER (inner pages) ───────────────── */
+.ph{background:var(--black);padding:140px 48px 80px;position:relative;overflow:hidden}
+.ph::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.05),transparent)}
+.phi{max-width:1200px;margin:0 auto;position:relative}
+.ph-tag{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.ph-tag::before{content:'';width:20px;height:1px;background:var(--gold)}
+.ph-title{font-family:var(--fd);font-size:clamp(36px,5vw,68px);font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;max-width:700px}
+.ph-sub{font-size:17px;color:rgba(255,255,255,.4);max-width:500px;line-height:1.7;margin-top:18px}
+
+/* ══════════════════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════════════════ */
+/* Hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0a0a0a 0%,#141414 40%,#0a140a 100%)}
+.mesh-c{position:absolute;border-radius:50%;filter:blur(80px);opacity:.14;animation:meshFloat 8s ease-in-out infinite}
+.mesh-c:nth-child(1){width:600px;height:600px;background:radial-gradient(circle,var(--gold),transparent);top:-200px;right:-80px}
+.mesh-c:nth-child(2){width:400px;height:400px;background:radial-gradient(circle,var(--em),transparent);bottom:-80px;left:10%;animation-delay:2s}
+.mesh-c:nth-child(3){width:280px;height:280px;background:radial-gradient(circle,var(--gold-light),transparent);top:45%;left:42%;animation-delay:4s}
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:2px;height:2px;background:var(--gold);border-radius:50%;animation:particleFly linear infinite;opacity:0}
+@keyframes particleFly{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:.5}90%{opacity:.2}100%{transform:translateY(-100px) translateX(50px);opacity:0}}
+
+.hc{position:relative;z-index:10;max-width:1200px;margin:0 auto;padding:0 48px;padding-top:var(--nav)}
+.h-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.28);padding:6px 16px 6px 8px;margin-bottom:36px;animation:fadeUp .8s var(--ease) .2s both}
+.h-badge-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease infinite}
+.h-badge span{font-size:11px;font-weight:600;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px}
+.h-title{font-family:var(--fd);font-size:clamp(52px,7.5vw,100px);font-weight:900;line-height:.97;color:#fff;letter-spacing:-3px;margin-bottom:28px;animation:fadeUp .8s var(--ease) .4s both}
+.h-title .tg{color:var(--gold);font-style:italic}
+.h-title .te{color:var(--em-light)}
+.h-sub{font-family:var(--fe);font-size:clamp(18px,2.4vw,23px);font-weight:300;color:rgba(255,255,255,.6);max-width:500px;line-height:1.65;margin-bottom:52px;animation:fadeUp .8s var(--ease) .6s both}
+.h-ctas{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .8s both}
+.h-stats{display:flex;gap:44px;margin-top:72px;padding-top:44px;border-top:1px solid rgba(255,255,255,.1);animation:fadeUp .8s var(--ease) 1s both;flex-wrap:wrap}
+.h-stat-num{font-family:var(--fd);font-size:36px;font-weight:700;color:#fff;line-height:1}
+.h-stat-num .gn{color:var(--gold)}
+.h-stat-lbl{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px;text-transform:uppercase;margin-top:5px}
+.scroll-ind{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s var(--ease) 1.5s both}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollLine 2s ease-in-out infinite}
+.scroll-txt{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase}
+
+/* Ticker */
+.ticker{background:linear-gradient(135deg,var(--gold-dark),var(--gold));padding:11px 0;overflow:hidden}
+.tick-inner{display:flex;animation:tickMove 28s linear infinite;width:max-content}
+.tick-item{display:flex;align-items:center;gap:24px;padding:0 32px;white-space:nowrap;font-size:11.5px;font-weight:600;color:#fff;letter-spacing:1px;text-transform:uppercase}
+.tick-sep{color:rgba(255,255,255,.45);font-size:14px}
+
+/* Logos */
+.logos-sec{padding:64px 48px;max-width:1200px;margin:0 auto}
+.logos-ey{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--g4);text-align:center;margin-bottom:36px}
+.logos-row{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
+.logo-pill{padding:11px 22px;border:1px solid var(--g2);color:var(--g4);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;transition:all .3s;cursor:default}
+.logo-pill:hover{border-color:var(--gold);color:var(--gold-dark)}
+
+/* Why section */
+.why{background:var(--black-soft);padding:100px 0}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px}
+.feat-card{padding:48px 36px;background:var(--black-mid);position:relative;overflow:hidden;transition:all .4s;cursor:default}
+.feat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(201,168,76,.04),transparent);opacity:0;transition:opacity .4s}
+.feat-card:hover{background:#202020}
+.feat-card:hover::after{opacity:1}
+.feat-card:hover .feat-ico{border-color:var(--gold)}
+.feat-num{position:absolute;top:22px;right:22px;font-family:var(--fd);font-size:48px;font-weight:700;color:rgba(255,255,255,.035);line-height:1}
+.feat-ico{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border:1px solid var(--g7);margin-bottom:28px;transition:border-color .3s}
+.feat-ico svg{width:22px;height:22px}
+.feat-title{font-family:var(--fd);font-size:20px;font-weight:600;color:#fff;margin-bottom:12px}
+.feat-txt{font-size:14px;color:rgba(255,255,255,.4);line-height:1.75}
+
+/* Stats counters */
+.stats-sec{background:var(--white-soft);padding:80px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-box{padding:48px 32px;text-align:center;border-right:1px solid var(--g2);position:relative}
+.stat-box:last-child{border-right:none}
+.stat-num{font-family:var(--fd);font-size:56px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-2px}
+.stat-num .sf{color:var(--gold)}
+.stat-lbl{font-size:11px;color:var(--g4);letter-spacing:1.5px;text-transform:uppercase;margin-top:8px}
+.stat-bar{position:absolute;bottom:0;left:24px;right:24px;height:2px;background:var(--g2)}
+.stat-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--em));width:0;transition:width 1.5s var(--ease)}
+
+/* Blog cards */
+.blog-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:2px}
+.bc-hero{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:4/3}
+.bc-hero img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.bc-hero:hover img{transform:scale(1.04)}
+.bc-hero-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:36px}
+.bc-tag{display:inline-block;padding:4px 12px;background:var(--gold);color:#fff;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;width:fit-content}
+.bc-tag.g{background:var(--em)}.bc-tag.d{background:var(--black-mid);border:1px solid var(--g6)}
+.bc-ttl{font-family:var(--fd);font-size:26px;font-weight:700;color:#fff;line-height:1.2;letter-spacing:-.5px}
+.bc-ttl.sm{font-size:18px}
+.bc-meta{display:flex;align-items:center;gap:14px;margin-top:10px;font-size:12px;color:rgba(255,255,255,.45)}
+.bc-auth{color:var(--gold-light);font-weight:500}
+.bc-stack{display:flex;flex-direction:column;gap:2px}
+.bc-sm{position:relative;overflow:hidden;cursor:pointer;flex:1;min-height:200px}
+.bc-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.bc-sm:hover img{transform:scale(1.05)}
+.bc-sm-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.82) 0%,transparent 55%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+
+/* Carousel */
+.carousel-sec{background:var(--black);padding:80px 0;overflow:hidden}
+.car-track-wrap{overflow:hidden;padding:0 48px}
+.car-track{display:flex;gap:24px;transition:transform .6s var(--ease)}
+.car-slide{min-width:380px;background:var(--black-mid);border:1px solid var(--g7);flex-shrink:0;overflow:hidden;transition:border-color .3s;cursor:pointer}
+.car-slide:hover{border-color:rgba(201,168,76,.38)}
+.car-img{width:100%;aspect-ratio:16/10;object-fit:cover;opacity:.72;transition:opacity .3s}
+.car-slide:hover .car-img{opacity:.92}
+.car-body{padding:24px}
+.car-cat{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.car-ttl{font-family:var(--fd);font-size:18px;font-weight:700;color:#fff;line-height:1.3;letter-spacing:-.3px}
+.car-controls{display:flex;align-items:center;gap:12px;margin-top:36px;padding:0 48px}
+.car-btn{width:48px;height:48px;border:1px solid var(--g7);color:#fff;display:flex;align-items:center;justify-content:center;transition:all .3s;font-size:18px;cursor:pointer}
+.car-btn:hover{border-color:var(--gold);color:var(--gold)}
+.car-dots{display:flex;gap:8px;margin-left:12px}
+.car-dot{width:20px;height:2px;background:var(--g7);transition:all .3s;cursor:pointer}
+.car-dot.on{background:var(--gold);width:40px}
+
+/* Marketplace preview */
+.mp-prev{background:var(--white-soft);padding:100px 0}
+.biz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px}
+
+/* Business cards */
+.biz-card{background:var(--white);border:1px solid var(--g2);overflow:hidden;transition:all .4s var(--ease);position:relative;cursor:pointer}
+.biz-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--sh-hover)}
+.biz-banner{height:120px;width:100%;object-fit:cover;display:block}
+.biz-header{padding:0 24px 18px;display:flex;align-items:flex-end;gap:14px;margin-top:-28px}
+.biz-logo{width:56px;height:56px;border:3px solid var(--white);background:var(--white);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-weight:900;font-size:18px;flex-shrink:0;box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.biz-vbadge{display:flex;align-items:center;gap:4px;margin-left:auto;font-size:10px;font-weight:600;color:var(--em);letter-spacing:.5px}
+.biz-vbadge svg{width:14px;height:14px}
+.biz-body{padding:0 24px 22px}
+.biz-name{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--black);margin-bottom:6px}
+.biz-cat{display:inline-block;padding:3px 10px;background:var(--em-pale);color:var(--em-dark);font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.biz-desc{font-size:13px;color:var(--g5);line-height:1.65;margin-bottom:0}
+.biz-foot{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;border-top:1px solid var(--g1)}
+.biz-contact{font-size:12px;color:var(--g4)}
+.biz-cta{font-size:12px;font-weight:600;color:var(--gold-dark);letter-spacing:.5px;display:flex;align-items:center;gap:6px;transition:gap .2s}
+.biz-card:hover .biz-cta{gap:10px}
+.feat-badge{position:absolute;top:12px;left:12px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px}
+.spon-badge{position:absolute;top:12px;right:12px;background:rgba(26,122,74,.9);color:#fff;font-size:9px;font-weight:600;padding:4px 8px}
+
+/* Newsletter */
+.nl-sec{background:var(--black);padding:100px 48px;text-align:center;position:relative;overflow:hidden}
+.nl-sec::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,.07),transparent);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.nl-title{font-family:var(--fd);font-size:clamp(30px,4vw,54px);font-weight:700;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:18px;position:relative}
+.nl-title em{color:var(--gold);font-style:italic}
+.nl-sub{font-size:17px;color:rgba(255,255,255,.45);margin-bottom:44px;position:relative}
+.nl-form{display:flex;gap:0;max-width:480px;margin:0 auto;position:relative}
+.nl-inp{flex:1;padding:16px 20px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-right:none;color:#fff;font-size:14px;outline:none;transition:border-color .3s}
+.nl-inp::placeholder{color:rgba(255,255,255,.28)}
+.nl-inp:focus{border-color:var(--gold)}
+.nl-btn{padding:16px 28px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none}
+.nl-btn:hover{box-shadow:0 8px 24px rgba(201,168,76,.38)}
+
+/* Footer */
+.footer{background:#050505;padding:80px 0 40px}
+.fi{max-width:1200px;margin:0 auto;padding:0 48px}
+.f-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:60px;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,.05)}
+.f-logo{font-family:var(--fd);font-size:20px;font-weight:700;color:#fff;letter-spacing:.5px;margin-bottom:4px}
+.f-tagline{font-size:11px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.f-desc{font-size:13px;color:rgba(255,255,255,.3);line-height:1.85;margin-bottom:24px}
+.f-socials{display:flex;gap:10px}
+.f-soc{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35);font-size:11px;font-weight:700;transition:all .3s}
+.f-soc:hover{border-color:var(--gold);color:var(--gold)}
+.f-col-ttl{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:22px}
+.f-links{display:flex;flex-direction:column;gap:11px}
+.f-link{font-size:14px;color:rgba(255,255,255,.4);transition:color .2s}
+.f-link:hover{color:var(--gold-light)}
+.f-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:30px;flex-wrap:wrap;gap:14px}
+.f-copy{font-size:12px;color:rgba(255,255,255,.18)}
+.f-legal{display:flex;gap:22px}
+.f-legal a{font-size:12px;color:rgba(255,255,255,.18);transition:color .2s}
+.f-legal a:hover{color:rgba(255,255,255,.45)}
+
+/* ══════════════════════════════════════════════════
+   BLOG PAGE
+══════════════════════════════════════════════════ */
+.blog-ctrl{background:var(--white);border-bottom:1px solid var(--g2);padding:18px 48px;position:sticky;top:var(--nav);z-index:100}
+.blog-ctrl-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.b-search{display:flex;align-items:center;gap:10px;background:var(--g1);padding:10px 16px;flex:1;max-width:320px}
+.b-search input{background:none;border:none;outline:none;font-size:14px;color:var(--black);width:100%}
+.b-search input::placeholder{color:var(--g4)}
+.b-search svg{width:16px;height:16px;color:var(--g4);flex-shrink:0}
+.b-filters{display:flex;gap:8px;flex-wrap:wrap}
+.fb{padding:8px 18px;font-size:12px;font-weight:500;border:1px solid var(--g2);color:var(--g5);transition:all .2s;cursor:pointer;background:var(--white)}
+.fb:hover,.fb.on{background:var(--black);border-color:var(--black);color:#fff}
+.fb.gld.on{background:var(--gold);border-color:var(--gold)}
+
+.blog-layout{max-width:1200px;margin:0 auto;padding:60px 48px;display:grid;grid-template-columns:1fr 340px;gap:60px}
+.blog-feat-card{background:var(--white);border:1px solid var(--g2);overflow:hidden;cursor:pointer;transition:all .4s;display:grid;grid-template-columns:1fr 1fr;min-height:360px;margin-bottom:44px}
+.blog-feat-card:hover{box-shadow:var(--sh-hover);transform:translateY(-3px)}
+.bfc-img{overflow:hidden}
+.bfc-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.blog-feat-card:hover .bfc-img img{transform:scale(1.04)}
+.bfc-body{padding:36px;display:flex;flex-direction:column;justify-content:space-between}
+.bfc-lbl{color:var(--gold-dark);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+.bfc-ttl{font-family:var(--fd);font-size:24px;font-weight:700;color:var(--black);line-height:1.2;letter-spacing:-.5px;margin-bottom:14px}
+.bfc-exc{font-size:14px;color:var(--g5);line-height:1.7}
+.bfc-foot{display:flex;align-items:center;justify-content:space-between;margin-top:24px}
+.ba-info{display:flex;align-items:center;gap:10px}
+.ba-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--em));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff}
+.ba-name{font-size:13px;font-weight:600;color:var(--black)}
+.ba-date{font-size:11px;color:var(--g4)}
+.b-rt{font-size:11px;color:var(--g4);letter-spacing:.5px}
+
+.b-list{display:flex;flex-direction:column}
+.b-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--g1);cursor:pointer;transition:all .3s}
+.b-item:hover .b-item-ttl{color:var(--gold-dark)}
+.b-thumb{width:96px;height:68px;object-fit:cover;flex-shrink:0;transition:transform .4s}
+.b-item:hover .b-thumb{transform:scale(1.04)}
+.b-item-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--gold-dark);text-transform:uppercase;margin-bottom:4px}
+.b-item-ttl{font-family:var(--fd);font-size:16px;font-weight:700;color:var(--black);line-height:1.3;transition:color .2s}
+.b-item-meta{font-size:11px;color:var(--g4);margin-top:5px}
+
+.sidebar-w{background:var(--g1);padding:26px;margin-bottom:24px}
+.sw-ttl{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--black);margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--gold);display:inline-block}
+.trend-list{display:flex;flex-direction:column;gap:14px}
+.trend-item{display:flex;gap:14px;cursor:pointer}
+.trend-item:hover .trend-ttl{color:var(--gold-dark)}
+.trend-n{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--g2);line-height:1;flex-shrink:0;min-width:28px}
+.trend-ttl{font-size:14px;font-weight:600;color:var(--black);line-height:1.4;transition:color .2s}
+.trend-meta{font-size:11px;color:var(--g4);margin-top:2px}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag-pill{padding:6px 14px;background:var(--white);border:1px solid var(--g2);font-size:12px;color:var(--g6);transition:all .2s;cursor:pointer}
+.tag-pill:hover{border-color:var(--gold);color:var(--gold-dark);background:var(--gold-pale)}
+
+/* ══════════════════════════════════════════════════
+   ARTICLE PAGE
+══════════════════════════════════════════════════ */
+.art-hero{background:var(--black);padding:120px 48px 0;position:relative;overflow:hidden}
+.art-hi{max-width:760px;margin:0 auto;padding-bottom:56px}
+.art-cats{display:flex;gap:8px;margin-bottom:18px}
+.art-cat{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);padding:4px 12px;border:1px solid rgba(201,168,76,.38)}
+.art-title{font-family:var(--fd);font-size:clamp(30px,4.5vw,54px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-2px;margin-bottom:18px}
+.art-sub{font-family:var(--fe);font-size:20px;font-weight:300;color:rgba(255,255,255,.48);line-height:1.65;margin-bottom:32px}
+.art-byline{display:flex;align-items:center;gap:16px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1)}
+.art-av{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:15px}
+.art-aname{font-size:15px;font-weight:600;color:#fff}
+.art-arole{font-size:12px;color:rgba(255,255,255,.38)}
+.art-date{font-size:12px;color:rgba(255,255,255,.35);margin-left:auto}
+.art-img-full{width:100%;max-width:1200px;margin:0 auto;height:460px;object-fit:cover;display:block}
+.art-body-wrap{max-width:1200px;margin:0 auto;padding:60px 48px;display:grid;grid-template-columns:1fr 320px;gap:72px}
+.art-body p{font-family:var(--fe);font-size:20px;color:var(--g7);line-height:1.9;margin-bottom:26px;font-weight:300}
+.art-body h2{font-family:var(--fd);font-size:28px;font-weight:700;color:var(--black);letter-spacing:-.5px;margin:44px 0 18px}
+.art-body h3{font-family:var(--fd);font-size:22px;font-weight:600;color:var(--black);margin:32px 0 14px}
+.pull-q{border-left:3px solid var(--gold);padding:16px 26px;margin:36px 0;background:var(--g1)}
+.pull-q p{font-family:var(--fd);font-size:22px!important;font-style:italic;color:var(--black)!important;margin:0!important;line-height:1.4!important}
+
+/* Comments */
+.comments{margin-top:60px;padding-top:44px;border-top:1px solid var(--g2)}
+.cm-inp-area{background:var(--g1);padding:26px;margin-bottom:36px}
+.cm-inp-area h3{font-family:var(--fd);font-size:20px;font-weight:700;margin-bottom:14px}
+.cm-inp{width:100%;min-height:96px;padding:12px 16px;background:var(--white);border:1px solid var(--g2);outline:none;font-size:14px;resize:none;transition:border-color .3s;margin-bottom:10px}
+.cm-inp:focus{border-color:var(--gold)}
+.btn-sm-g{padding:10px 24px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:13px;font-weight:600;transition:all .3s;cursor:pointer;border:none}
+.btn-sm-g:hover{box-shadow:var(--sh-gold)}
+.cm-list{display:flex;flex-direction:column;gap:26px}
+.cm-item{display:flex;gap:14px}
+.cm-av{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13px}
+.cm-head{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.cm-name{font-size:14px;font-weight:600;color:var(--black)}
+.cm-date{font-size:11px;color:var(--g4)}
+.cm-txt{font-size:14px;color:var(--g6);line-height:1.7}
+
+/* ══════════════════════════════════════════════════
+   MARKETPLACE PAGE
+══════════════════════════════════════════════════ */
+.mp-layout{max-width:1200px;margin:0 auto;padding:60px 48px}
+.mp-hero-bar{background:linear-gradient(135deg,var(--black),var(--black-mid));padding:38px 44px;margin-bottom:44px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.mp-hero-bar h2{font-family:var(--fd);font-size:26px;font-weight:700;color:#fff;letter-spacing:-.5px}
+.mp-hero-bar p{font-size:14px;color:rgba(255,255,255,.38);margin-top:4px}
+.post-btn{padding:14px 26px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-weight:600;font-size:14px;transition:all .3s;cursor:pointer;border:none;white-space:nowrap}
+.post-btn:hover{transform:translateY(-2px);box-shadow:var(--sh-gold)}
+.mp-flt-bar{display:flex;align-items:center;gap:14px;margin-bottom:36px;flex-wrap:wrap}
+.mp-search{display:flex;align-items:center;gap:10px;background:var(--white);border:1px solid var(--g2);padding:11px 16px;flex:1;max-width:340px}
+.mp-search input{background:none;border:none;outline:none;font-size:14px;width:100%}
+.mp-search svg{width:16px;height:16px;color:var(--g4);flex-shrink:0}
+.cf{padding:10px 18px;font-size:12px;font-weight:500;border:1px solid var(--g2);background:var(--white);color:var(--g6);transition:all .2s;cursor:pointer}
+.cf.on,.cf:hover{background:var(--black);color:#fff;border-color:var(--black)}
+.mp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* ══════════════════════════════════════════════════
+   POST BUSINESS MODAL
+══════════════════════════════════════════════════ */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(4px);z-index:8000;display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-ov.open .modal{transform:translateY(0)}
+.modal{background:var(--white);max-width:680px;width:100%;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .3s var(--ease)}
+.modal-hd{padding:30px 38px 22px;border-bottom:1px solid var(--g2);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:1}
+.modal-ttl{font-family:var(--fd);font-size:22px;font-weight:700}
+.modal-close{width:34px;height:34px;border:1px solid var(--g2);display:flex;align-items:center;justify-content:center;color:var(--g5);font-size:18px;cursor:pointer;transition:all .2s}
+.modal-close:hover{border-color:var(--black);color:var(--black)}
+.modal-bd{padding:30px 38px}
+.modal-ft{padding:22px 38px;border-top:1px solid var(--g2);display:flex;gap:10px;justify-content:flex-end}
+.fg{margin-bottom:22px}
+.fl{display:block;font-size:11px;font-weight:600;letter-spacing:.5px;color:var(--g6);margin-bottom:7px;text-transform:uppercase}
+.fi2{width:100%;padding:12px 16px;border:1px solid var(--g2);font-size:14px;outline:none;transition:border-color .3s;color:var(--black);background:var(--white)}
+.fi2:focus{border-color:var(--gold)}
+.fi2.ta{min-height:96px;resize:vertical}
+.fsel{width:100%;padding:12px 16px;border:1px solid var(--g2);font-size:14px;outline:none;background:var(--white);color:var(--black);cursor:pointer}
+.f2g{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.upload-area{border:2px dashed var(--g2);padding:28px;text-align:center;cursor:pointer;transition:all .3s}
+.upload-area:hover{border-color:var(--gold);background:var(--gold-pale)}
+.up-ico{font-size:26px;margin-bottom:6px}
+.up-txt{font-size:13px;color:var(--g5)}
+.up-txt span{color:var(--gold-dark);font-weight:600}
+.btn-can{padding:12px 22px;border:1px solid var(--g2);font-size:14px;font-weight:500;color:var(--g6);transition:all .2s;cursor:pointer;background:none}
+.btn-can:hover{border-color:var(--black);color:var(--black)}
+.btn-sub{padding:12px 26px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:14px;font-weight:600;transition:all .3s;cursor:pointer;border:none}
+.btn-sub:hover{box-shadow:var(--sh-gold)}
+
+/* ══════════════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════════════ */
+.dash-page{background:var(--g1);min-height:100vh}
+.dash-layout{display:flex;min-height:100vh}
+.dash-sb{width:260px;background:var(--black);flex-shrink:0;padding:80px 0 40px;position:fixed;top:0;left:0;bottom:0;z-index:50;display:flex;flex-direction:column;overflow-y:auto}
+.dsb-logo{padding:0 26px 28px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:20px}
+.dsb-logo-t{font-family:var(--fd);font-size:15px;font-weight:700;color:#fff}
+.dsb-logo-s{font-size:9px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase}
+.dsb-nav{flex:1;padding:0 10px}
+.dsb-sec{margin-bottom:28px}
+.dsb-sec-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.18);padding:0 14px;margin-bottom:6px}
+.dsb-item{display:flex;align-items:center;gap:12px;padding:11px 14px;color:rgba(255,255,255,.42);font-size:13px;font-weight:500;transition:all .2s;cursor:pointer;position:relative}
+.dsb-item:hover{color:#fff;background:rgba(255,255,255,.04)}
+.dsb-item.on{color:#fff;background:rgba(201,168,76,.1)}
+.dsb-item.on::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--gold)}
+.dsb-item svg{width:16px;height:16px;flex-shrink:0}
+.dsb-badge{margin-left:auto;background:var(--gold);color:#fff;font-size:10px;font-weight:700;padding:2px 7px}
+.dsb-badge.em{background:var(--em)}
+.dsb-badge.red{background:#dc2626}
+.dsb-user{padding:22px 26px;border-top:1px solid rgba(255,255,255,.05)}
+.dsb-u-in{display:flex;align-items:center;gap:10px}
+.dsb-u-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--em));display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:12px;flex-shrink:0}
+.dsb-u-name{font-size:13px;font-weight:600;color:#fff}
+.dsb-u-role{font-size:11px;color:rgba(255,255,255,.28)}
+.dash-main{margin-left:260px;flex:1;padding:100px 36px 40px;max-width:calc(100% - 260px)}
+.dash-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:14px}
+.dash-welcome{font-family:var(--fd);font-size:25px;font-weight:700;color:var(--black)}
+.dash-welcome span{color:var(--gold-dark)}
+.dash-date{font-size:13px;color:var(--g4);margin-top:2px}
+.dash-acts{display:flex;gap:10px}
+.dash-notif{width:38px;height:38px;background:var(--white);border:1px solid var(--g2);display:flex;align-items:center;justify-content:center;position:relative;cursor:pointer;font-size:16px;transition:all .2s}
+.dash-notif:hover{border-color:var(--gold)}
+.notif-dot{position:absolute;top:7px;right:7px;width:8px;height:8px;background:var(--gold);border-radius:50%}
+.dash-act-btn{padding:10px 18px;background:var(--black);color:#fff;font-size:13px;font-weight:600;transition:all .3s;cursor:pointer;border:none}
+.dash-act-btn:hover{background:var(--gold-dark)}
+
+/* KPI Cards */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.kpi{background:var(--white);border:1px solid var(--g2);padding:26px 22px;position:relative;overflow:hidden;transition:all .3s}
+.kpi:hover{border-color:var(--gold);box-shadow:var(--sh-card);transform:translateY(-2px)}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.kpi.gld::after{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.kpi.em::after{background:linear-gradient(90deg,var(--em),var(--em-light))}
+.kpi.blk::after{background:var(--black)}
+.kpi.blu::after{background:linear-gradient(90deg,#2563eb,#60a5fa)}
+.kpi-lbl{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--g4);margin-bottom:10px}
+.kpi-val{font-family:var(--fd);font-size:36px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-1px}
+.kpi-chg{display:flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600}
+.kpi-chg.up{color:var(--em)}.kpi-chg.dn{color:#dc2626}
+
+.dash-2col{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:20px}
+.dash-card{background:var(--white);border:1px solid var(--g2);padding:26px}
+.dc-ttl{font-family:var(--fd);font-size:17px;font-weight:700;color:var(--black);margin-bottom:3px}
+.dc-sub{font-size:12px;color:var(--g4);margin-bottom:22px}
+
+/* Chart bars */
+.chart-bars{display:flex;align-items:flex-end;gap:8px;height:140px;padding-top:8px}
+.cb-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+.cb-track{flex:1;width:100%;background:var(--g1);position:relative;display:flex;align-items:flex-end}
+.cb-fill{width:100%;background:linear-gradient(to top,var(--gold-dark),var(--gold-light));transition:height 1.2s var(--ease)}
+.cb-fill.em{background:linear-gradient(to top,var(--em-dark),var(--em-light))}
+.cb-lbl{font-size:10px;color:var(--g4)}
+
+/* Activity feed */
+.activity-list{display:flex;flex-direction:column;gap:14px}
+.act-item{display:flex;align-items:flex-start;gap:10px}
+.act-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.act-dot.gld{background:var(--gold)}.act-dot.em{background:var(--em)}.act-dot.gr{background:var(--g3)}
+.act-txt{font-size:13px;color:var(--g7);line-height:1.5}
+.act-txt strong{color:var(--black)}
+.act-time{font-size:11px;color:var(--g4);margin-top:2px}
+
+/* Listings table */
+.dash-table{background:var(--white);border:1px solid var(--g2)}
+.dt-hd{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--g2)}
+.dt-ttl{font-family:var(--fd);font-size:17px;font-weight:700}
+.dt-act{font-size:12px;color:var(--gold-dark);font-weight:600;cursor:pointer}
+table{width:100%;border-collapse:collapse}
+thead th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g4);padding:12px 22px;text-align:left;border-bottom:1px solid var(--g2);background:var(--g1)}
+tbody tr{border-bottom:1px solid var(--g1);transition:background .2s}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--g1)}
+tbody td{padding:13px 22px;font-size:13px;color:var(--g7)}
+.ts{display:inline-block;padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.ts.act{background:var(--em-pale);color:var(--em-dark)}
+.ts.pend{background:#FFF8E7;color:#A0700A}
+.ts.rej{background:#FEE2E2;color:#991B1B}
+.t-al{font-size:12px;color:var(--gold-dark);font-weight:600;cursor:pointer}
+
+/* ══════════════════════════════════════════════════
+   ABOUT PAGE
+══════════════════════════════════════════════════ */
+.about-story{max-width:1200px;margin:0 auto;padding:80px 48px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.as-img-wrap{position:relative}
+.as-img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.as-accent{position:absolute;bottom:-22px;right:-22px;width:190px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));padding:26px}
+.as-acc-num{font-family:var(--fd);font-size:44px;font-weight:700;color:#fff;line-height:1}
+.as-acc-lbl{font-size:11px;color:rgba(255,255,255,.65);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+
+.team-sec{background:var(--black);padding:100px 0}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:52px}
+.team-card{background:var(--black-mid);overflow:hidden;transition:all .4s;cursor:pointer}
+.team-card:hover{background:#222}
+.team-card:hover .team-img{transform:scale(1.04)}
+.t-img-wrap{overflow:hidden;aspect-ratio:3/4;background:var(--g7)}
+.team-img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.team-body{padding:18px 22px}
+.team-name{font-family:var(--fd);font-size:18px;font-weight:700;color:#fff}
+.team-role{font-size:12px;color:var(--gold);letter-spacing:.5px;margin-top:4px}
+.team-socs{display:flex;gap:8px;margin-top:10px}
+.t-soc{font-size:11px;font-weight:700;color:rgba(255,255,255,.25);letter-spacing:1px;transition:color .2s}
+.t-soc:hover{color:var(--gold)}
+
+.val-sec{background:var(--white-soft);padding:100px 0}
+.val-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:52px}
+.val-card{background:var(--white);padding:38px;position:relative;overflow:hidden;transition:all .4s}
+.val-card:hover{transform:translateY(-4px);box-shadow:var(--sh-hover)}
+.val-num{font-family:var(--fd);font-size:64px;font-weight:700;color:var(--g2);line-height:1;position:absolute;top:14px;right:22px}
+.val-ico{font-size:30px;margin-bottom:18px}
+.val-ttl{font-family:var(--fd);font-size:24px;font-weight:700;color:var(--black);margin-bottom:10px}
+.val-txt{font-size:15px;color:var(--g5);line-height:1.75}
+
+/* ══════════════════════════════════════════════════
+   PARTNER PAGE
+══════════════════════════════════════════════════ */
+.partner-tiers{max-width:1200px;margin:0 auto;padding:0 48px 80px}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px}
+.tier-card{background:var(--white);border:1px solid var(--g2);padding:38px;position:relative;overflow:hidden;transition:all .4s}
+.tier-card.feat{background:var(--black);border-color:var(--gold);transform:translateY(-8px);z-index:1}
+.tier-card:hover:not(.feat){border-color:var(--gold);transform:translateY(-4px);box-shadow:var(--sh-hover)}
+.tier-badge{position:absolute;top:18px;right:18px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px}
+.tier-nm{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px}
+.tier-card.feat .tier-nm{color:var(--gold)}
+.tier-price{font-family:var(--fd);font-size:46px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-2px;margin-bottom:3px}
+.tier-card.feat .tier-price{color:#fff}
+.tier-period{font-size:13px;color:var(--g5);margin-bottom:28px}
+.tier-card.feat .tier-period{color:rgba(255,255,255,.45)}
+.tier-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:32px}
+.tier-feat{display:flex;align-items:center;gap:10px;font-size:14px}
+.tfc{color:var(--em);font-size:16px;flex-shrink:0}
+.tier-card.feat .tier-feat{color:rgba(255,255,255,.72)}
+.tier-cta{width:100%;padding:14px;font-size:14px;font-weight:600;background:var(--black);color:#fff;transition:all .3s;text-align:center;display:block;cursor:pointer;border:none}
+.tier-card.feat .tier-cta{background:linear-gradient(135deg,var(--gold),var(--gold-dark))}
+.tier-cta:hover{opacity:.85;transform:translateY(-1px)}
+
+.pf-sec{background:var(--g1);padding:80px 0}
+.pf-inner{max-width:700px;margin:0 auto;padding:0 48px}
+.pf-form{background:var(--white);padding:44px}
+.pf-form .f2g{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+
+/* ══════════════════════════════════════════════════
+   CONTACT PAGE
+══════════════════════════════════════════════════ */
+.contact-layout{max-width:1200px;margin:0 auto;padding:0 48px 90px;display:grid;grid-template-columns:1fr 1fr;gap:72px}
+.contact-intro{font-family:var(--fe);font-size:19px;font-weight:300;color:var(--g5);line-height:1.75;margin-bottom:44px}
+.c-cards{display:flex;flex-direction:column;gap:14px;margin-bottom:36px}
+.c-card{padding:22px;border:1px solid var(--g2);display:flex;gap:14px;align-items:flex-start;transition:all .3s}
+.c-card:hover{border-color:var(--gold)}
+.c-ico{width:42px;height:42px;background:var(--black);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-ico svg{width:17px;height:17px;color:var(--gold)}
+.c-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g4);margin-bottom:3px}
+.c-val{font-size:15px;font-weight:600;color:var(--black)}
+.wa-link{display:flex;align-items:center;gap:12px;background:#25D366;color:#fff;padding:14px 22px;font-weight:600;font-size:14px;transition:all .3s;width:fit-content;cursor:pointer}
+.wa-link:hover{background:#1ebe5a;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,.28)}
+.wa-link svg{width:20px;height:20px}
+.cf-card{background:var(--g1);padding:38px}
+.cf-ttl{font-family:var(--fd);font-size:22px;font-weight:700;margin-bottom:24px}
+
+/* ══════════════════════════════════════════════════
+   AUTH PAGES
+══════════════════════════════════════════════════ */
+.auth-wrap{min-height:100vh;background:var(--black);display:flex;align-items:stretch}
+.auth-left{flex:1;background:linear-gradient(135deg,var(--black) 0%,#0a1a0a 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;position:relative;overflow:hidden}
+.auth-left::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.1),transparent);top:50%;left:50%;transform:translate(-50%,-50%)}
+.auth-bigttl{font-family:var(--fd);font-size:42px;font-weight:700;color:#fff;line-height:1.1;letter-spacing:-1px;text-align:center;margin-bottom:18px;position:relative}
+.auth-bigttl em{color:var(--gold)}
+.auth-bigsub{font-size:16px;color:rgba(255,255,255,.38);text-align:center;max-width:320px;line-height:1.7;position:relative}
+.auth-feats{display:flex;flex-direction:column;gap:14px;margin-top:44px;position:relative}
+.auth-feat{display:flex;align-items:center;gap:12px}
+.auth-feat-chk{color:var(--gold);font-size:15px}
+.auth-feat-t{font-size:14px;color:rgba(255,255,255,.45)}
+.auth-right{width:480px;background:var(--white);padding:56px 44px;display:flex;flex-direction:column;justify-content:center}
+.auth-logo{font-family:var(--fd);font-size:20px;font-weight:700;color:var(--black);margin-bottom:36px}
+.auth-logo span{color:var(--gold)}
+.auth-h{font-family:var(--fd);font-size:29px;font-weight:700;color:var(--black);margin-bottom:6px}
+.auth-sub{font-size:14px;color:var(--g4);margin-bottom:32px}
+.auth-form{display:flex;flex-direction:column;gap:14px}
+.auth-divider{display:flex;align-items:center;gap:14px;margin:6px 0;color:var(--g3);font-size:12px;text-transform:uppercase;letter-spacing:1px}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--g2)}
+.auth-submit{width:100%;padding:15px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:15px;font-weight:600;transition:all .3s;cursor:pointer;border:none;margin-top:6px}
+.auth-submit:hover{box-shadow:var(--sh-gold);transform:translateY(-1px)}
+.auth-soc-btn{width:100%;padding:13px;border:1px solid var(--g2);font-size:14px;font-weight:500;color:var(--black);display:flex;align-items:center;justify-content:center;gap:10px;transition:all .2s;cursor:pointer;background:var(--white)}
+.auth-soc-btn:hover{border-color:var(--black)}
+.auth-switch{font-size:13px;color:var(--g5);margin-top:26px;text-align:center}
+.auth-switch a{color:var(--gold-dark);font-weight:600}
+
+/* ══════════════════════════════════════════════════
+   PRICING PAGE
+══════════════════════════════════════════════════ */
+.pricing-grid{max-width:1100px;margin:0 auto;padding:60px 48px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pc{border:1px solid var(--g2);padding:38px;position:relative;transition:all .4s;background:var(--white)}
+.pc.pop{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.12)}
+.pc:hover:not(.pop){border-color:var(--g4);transform:translateY(-4px);box-shadow:var(--sh-card)}
+.pc-pop-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 16px;white-space:nowrap}
+.pc-tier{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--g4);margin-bottom:14px}
+.pc-price{font-family:var(--fd);font-size:50px;font-weight:700;color:var(--black);line-height:1;letter-spacing:-2px}
+.pc-cur{font-size:22px;font-weight:400;vertical-align:super;margin-right:2px}
+.pc-per{font-size:16px;font-weight:400;color:var(--g4);letter-spacing:0}
+.pc-desc{font-size:14px;color:var(--g5);margin:14px 0 28px;line-height:1.65}
+.pc-feats{display:flex;flex-direction:column;gap:11px;margin-bottom:32px}
+.pc-feat{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--g7)}
+.pc-feat-ico{color:var(--em);font-size:14px;flex-shrink:0}
+.pc-feat.off{color:var(--g3)}
+.pc-feat.off .pc-feat-ico{color:var(--g3)}
+.pc-btn{width:100%;padding:14px;font-size:14px;font-weight:600;text-align:center;display:block;transition:all .3s;border:1px solid var(--black);color:var(--black);cursor:pointer;background:none}
+.pc.pop .pc-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;border-color:transparent}
+.pc-btn:hover{background:var(--black);color:#fff}
+.pc.pop .pc-btn:hover{opacity:.88}
+.pricing-trust{max-width:800px;margin:0 auto 60px;padding:0 48px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.pt-item{text-align:center}
+.pt-val{font-family:var(--fd);font-size:22px;font-weight:700;color:var(--black)}
+.pt-lbl{font-size:12px;color:var(--g4);margin-top:3px}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .nav-links,.nav-actions{display:none}
+  .ham{display:flex}
+  .feat-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-grid{grid-template-columns:1fr}
+  .biz-grid{grid-template-columns:repeat(2,1fr)}
+  .mp-grid{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .dash-2col{grid-template-columns:1fr}
+  .dash-sb{display:none}
+  .dash-main{margin-left:0;max-width:100%}
+  .auth-left{display:none}
+  .auth-right{width:100%}
+  .blog-layout{grid-template-columns:1fr}
+  .blog-sidebar{display:none}
+  .art-body-wrap{grid-template-columns:1fr}
+  .art-body-wrap > div:last-child{display:none}
+  .contact-layout{grid-template-columns:1fr}
+  .about-story{grid-template-columns:1fr}
+  .tier-grid{grid-template-columns:1fr}
+  .tier-card.feat{transform:none}
+  .f-grid{grid-template-columns:1fr 1fr;gap:36px}
+  .h-stats{gap:22px}
+  .pricing-grid{grid-template-columns:1fr;max-width:480px}
+  .val-grid{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .nav{padding:0 20px}
+  .si,.ph,.logos-sec,.blog-ctrl,.blog-layout,.art-hero,.art-body-wrap,.mp-layout,.partner-tiers,.pf-inner,.contact-layout,.pricing-grid,.pricing-trust,.f-grid,.fi{padding-left:20px;padding-right:20px}
+  .hc{padding-left:20px;padding-right:20px;padding-top:var(--nav)}
+  .h-stats{flex-wrap:wrap;gap:18px}
+  .feat-grid,.stats-grid,.biz-grid,.mp-grid,.tier-grid{grid-template-columns:1fr}
+  .pricing-grid{padding:40px 20px}
+  .car-slide{min-width:280px}
+  .f-grid{grid-template-columns:1fr}
+  .blog-feat-card{grid-template-columns:1fr}
+  .nl-form{flex-direction:column}
+  .nl-inp{border-right:1px solid rgba(255,255,255,.14);border-bottom:none}
+  .auth-right{padding:36px 22px}
+  .pf-form .f2g{grid-template-columns:1fr}
+  .f2g{grid-template-columns:1fr}
+  .modal-hd,.modal-bd,.modal-ft{padding-left:22px;padding-right:22px}
+  .ph{padding:120px 20px 56px}
+}
+</style>
+</head>
+<body>
+
+<!-- Page Transition -->
+<div class="pt" id="pt"></div>
+<!-- Progress Bar -->
+<div class="pbar" id="pbar"></div>
+
+<!-- ══════════════ NAV ══════════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-brand">
+    <div class="nav-mark">RG</div>
+    <div class="nav-logo">RACKYWEB<span>Global Media</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a class="nav-link" href="#" onclick="go('home');return false">Home</a></li>
+    <li><a class="nav-link" href="#" onclick="go('blog');return false">Blog</a></li>
+    <li><a class="nav-link" href="#" onclick="go('marketplace');return false">Marketplace</a></li>
+    <li><a class="nav-link" href="#" onclick="go('about');return false">About</a></li>
+    <li><a class="nav-link" href="#" onclick="go('partner');return false">Partner</a></li>
+    <li><a class="nav-link" href="#" onclick="go('pricing');return false">Pricing</a></li>
+    <li><a class="nav-link" href="#" onclick="go('contact');return false">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nb-ghost" onclick="go('login')">Log In</button>
+    <button class="nb-gold" onclick="go('signup')">Get Started</button>
+  </div>
+  <button class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mobMenu">
+  <a class="mob-link" href="#" onclick="go('home');closeMob();return false">Home</a>
+  <a class="mob-link" href="#" onclick="go('blog');closeMob();return false">Blog</a>
+  <a class="mob-link" href="#" onclick="go('marketplace');closeMob();return false">Marketplace</a>
+  <a class="mob-link" href="#" onclick="go('about');closeMob();return false">About</a>
+  <a class="mob-link" href="#" onclick="go('partner');closeMob();return false">Partner With Us</a>
+  <a class="mob-link" href="#" onclick="go('pricing');closeMob();return false">Pricing</a>
+  <a class="mob-link" href="#" onclick="go('contact');closeMob();return false">Contact</a>
+  <a class="mob-link" href="#" onclick="go('login');closeMob();return false">Log In</a>
+  <a class="mob-link" href="#" onclick="go('signup');closeMob();return false">Create Account</a>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toastTxt">Done!</span></div>
+
+<!-- Floating WhatsApp -->
+<div class="wa-btn" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</div>
+<div class="chat-pill"><span class="live-dot"></span>Live Support</div>
+
+<!-- Post Business Modal -->
+<div class="modal-ov" id="postModal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-ttl">List Your Business</div>
+      <button class="modal-close" onclick="closeModal('postModal')">×</button>
+    </div>
+    <div class="modal-bd">
+      <div class="fg"><label class="fl">Business Name *</label><input class="fi2" type="text" placeholder="Enter your business name"></div>
+      <div class="f2g">
+        <div class="fg"><label class="fl">Category *</label><select class="fsel"><option>Select Category</option><option>Technology</option><option>Finance</option><option>Healthcare</option><option>E-Commerce</option><option>Media & PR</option><option>Real Estate</option><option>Education</option><option>Consulting</option></select></div>
+        <div class="fg"><label class="fl">Country *</label><select class="fsel"><option>Select Country</option><option>United States</option><option>United Kingdom</option><option>Nigeria</option><option>Canada</option><option>Germany</option><option>UAE</option><option>South Africa</option><option>Kenya</option></select></div>
+      </div>
+      <div class="fg"><label class="fl">Company Description *</label><textarea class="fi2 ta" placeholder="Describe your business, products, and services..."></textarea></div>
+      <div class="f2g">
+        <div class="fg"><label class="fl">Business Logo</label><div class="upload-area"><div class="up-ico">📷</div><div class="up-txt">Drop logo or <span>browse</span></div></div></div>
+        <div class="fg"><label class="fl">Cover Banner</label><div class="upload-area"><div class="up-ico">🖼️</div><div class="up-txt">Drop banner or <span>browse</span></div></div></div>
+      </div>
+      <div class="f2g">
+        <div class="fg"><label class="fl">Email Address</label><input class="fi2" type="email" placeholder="business@example.com"></div>
+        <div class="fg"><label class="fl">Phone / WhatsApp</label><input class="fi2" type="tel" placeholder="+1 (555) 000-0000"></div>
+      </div>
+      <div class="fg"><label class="fl">Website URL</label><input class="fi2" type="url" placeholder="https://yourbusiness.com"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn-can" onclick="closeModal('postModal')">Cancel</button>
+      <button class="btn-sub" onclick="toast('Business listing submitted for review!');closeModal('postModal')">Submit Listing</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="mesh-c"></div><div class="mesh-c"></div><div class="mesh-c"></div>
+      <div class="particles" id="particles"></div>
+    </div>
+    <div class="hc">
+      <div class="h-badge"><span class="h-badge-dot"></span><span>Global Business &amp; Innovation Platform</span></div>
+      <h1 class="h-title">Where Business<br><span class="tg">Meets</span><br><span class="te">Innovation</span></h1>
+      <p class="h-sub">The world's premier platform for business media, startup discovery, and commercial growth across 180+ countries.</p>
+      <div class="h-ctas">
+        <button class="btn-p" onclick="go('marketplace')"><span>Explore Marketplace</span><span>→</span></button>
+        <button class="btn-s" onclick="go('blog')">Read Our Journal</button>
+      </div>
+      <div class="h-stats">
+        <div class="h-stat"><div class="h-stat-num"><span class="gn" data-cnt="12">0</span><span class="gn">K+</span></div><div class="h-stat-lbl">Global Readers</div></div>
+        <div class="h-stat"><div class="h-stat-num"><span class="gn" data-cnt="3">0</span><span class="gn">K+</span></div><div class="h-stat-lbl">Listed Businesses</div></div>
+        <div class="h-stat"><div class="h-stat-num"><span class="gn" data-cnt="180">0</span><span class="gn">+</span></div><div class="h-stat-lbl">Countries</div></div>
+        <div class="h-stat"><div class="h-stat-num"><span class="gn" data-cnt="98">0</span><span class="gn">%</span></div><div class="h-stat-lbl">Satisfaction Rate</div></div>
+      </div>
+    </div>
+    <div class="scroll-ind"><div class="scroll-line"></div><span class="scroll-txt">Scroll</span></div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker"><div class="tick-inner" id="ticker">
+    <div class="tick-item">🌍 Global Startup Summit 2025<span class="tick-sep">◆</span></div>
+    <div class="tick-item">AI Investment Hits $200B Record High<span class="tick-sep">◆</span></div>
+    <div class="tick-item">African Tech Ecosystem Grows 340%<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Business Verification Feature Now Live<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Forbes × RACKYWEB Partnership Announced<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Emerging Markets Report Q4 2025<span class="tick-sep">◆</span></div>
+    <div class="tick-item">🌍 Global Startup Summit 2025<span class="tick-sep">◆</span></div>
+    <div class="tick-item">AI Investment Hits $200B Record High<span class="tick-sep">◆</span></div>
+    <div class="tick-item">African Tech Ecosystem Grows 340%<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Business Verification Feature Now Live<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Forbes × RACKYWEB Partnership Announced<span class="tick-sep">◆</span></div>
+    <div class="tick-item">Emerging Markets Report Q4 2025<span class="tick-sep">◆</span></div>
+  </div></div>
+
+  <!-- FEATURED IN -->
+  <div class="logos-sec"><p class="logos-ey">Trusted &amp; Featured In</p><div class="logos-row"><div class="logo-pill">Forbes</div><div class="logo-pill">Reuters</div><div class="logo-pill">Bloomberg</div><div class="logo-pill">TechCrunch</div><div class="logo-pill">Business Insider</div><div class="logo-pill">Fast Company</div></div></div>
+
+  <!-- WHY SECTION -->
+  <section class="why">
+    <div class="si">
+      <div class="sh"><div class="tag">Why Choose Us</div><h2 class="h1 wh">Built for the <em>Global</em> Business Elite</h2><p class="lead wh">Everything you need to discover, connect, and grow in the world's most dynamic business ecosystems.</p></div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card rv"><div class="feat-num">01</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 004 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/></svg></div><div class="feat-title">Global Reach</div><div class="feat-txt">Connect with business leaders, investors, and innovators across 180+ countries through our verified global network.</div></div>
+      <div class="feat-card rv d1"><div class="feat-num">02</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg></div><div class="feat-title">Premium Media</div><div class="feat-txt">World-class journalism covering startups, VC funding, tech innovation, and emerging market opportunities in real time.</div></div>
+      <div class="feat-card rv d2"><div class="feat-num">03</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg></div><div class="feat-title">Smart Marketplace</div><div class="feat-txt">List, discover, and transact with verified businesses globally. Verified badges, sponsored placements, and premium profiles.</div></div>
+      <div class="feat-card rv"><div class="feat-num">04</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><div class="feat-title">Analytics Dashboard</div><div class="feat-txt">Real-time insights, engagement metrics, and growth analytics designed for the modern business strategist.</div></div>
+      <div class="feat-card rv d1"><div class="feat-num">05</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div class="feat-title">Partnership Network</div><div class="feat-txt">Institutional partnerships with accelerators, VCs, government agencies, and Fortune 500 corporations worldwide.</div></div>
+      <div class="feat-card rv d2"><div class="feat-num">06</div><div class="feat-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div><div class="feat-title">Verified &amp; Secure</div><div class="feat-txt">Industry-leading verification processes and enterprise-grade security for every user, listing, and transaction.</div></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-sec">
+    <div class="stats-grid">
+      <div class="stat-box rv"><div class="stat-num"><span class="cu" data-count="12400">0</span><span class="sf">+</span></div><div class="stat-lbl">Monthly Readers</div><div class="stat-bar"><div class="stat-fill" data-w="85"></div></div></div>
+      <div class="stat-box rv d1"><div class="stat-num"><span class="cu" data-count="3200">0</span><span class="sf">+</span></div><div class="stat-lbl">Listed Businesses</div><div class="stat-bar"><div class="stat-fill" data-w="70"></div></div></div>
+      <div class="stat-box rv d2"><div class="stat-num"><span class="cu" data-count="840">0</span><span class="sf">+</span></div><div class="stat-lbl">Published Articles</div><div class="stat-bar"><div class="stat-fill" data-w="62"></div></div></div>
+      <div class="stat-box rv d3"><div class="stat-num"><span class="cu" data-count="180">0</span><span class="sf">+</span></div><div class="stat-lbl">Countries</div><div class="stat-bar"><div class="stat-fill" data-w="90"></div></div></div>
+    </div>
+  </section>
+
+  <!-- FEATURED BLOG -->
+  <section class="sec" style="padding-bottom:0">
+    <div class="si">
+      <div class="sh" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:40px">
+        <div><div class="tag">Latest Intelligence</div><h2 class="h1">Stories Shaping <em>Tomorrow's</em> Business</h2></div>
+        <button class="btn-p" onclick="go('blog')"><span>View All Articles</span><span>→</span></button>
+      </div>
+    </div>
+    <div class="blog-grid rv">
+      <div class="bc-hero" onclick="go('article')"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&q=80" alt=""><div class="bc-hero-ov"><div class="bc-tag">Cover Story</div><div class="bc-ttl">The $500 Billion AI Opportunity: How African Startups Are Rewriting Global Tech</div><div class="bc-meta"><span class="bc-auth">Amara Osei-Bonsu</span><span>·</span><span>May 8, 2025</span><span>·</span><span>8 min</span></div></div></div>
+      <div class="bc-stack">
+        <div class="bc-sm" onclick="go('article')"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80" alt=""><div class="bc-sm-ov"><div class="bc-tag g">Fintech</div><div class="bc-ttl sm">DeFi 2.0: The New Infrastructure Layer for Global Commerce</div><div class="bc-meta"><span class="bc-auth">Marcus Webb</span><span>·</span><span>6 min</span></div></div></div>
+        <div class="bc-sm" onclick="go('article')"><img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&q=80" alt=""><div class="bc-sm-ov"><div class="bc-tag d">Venture Capital</div><div class="bc-ttl sm">Inside the World's Most Aggressive Startup Ecosystem of 2025</div><div class="bc-meta"><span class="bc-auth">Priya Sharma</span><span>·</span><span>5 min</span></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section class="carousel-sec">
+    <div class="si" style="padding-bottom:0">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:36px">
+        <div><div class="tag" style="color:var(--gold)">Editor's Picks</div><h2 class="h1 wh">Trending <em>This Week</em></h2></div>
+      </div>
+    </div>
+    <div class="car-track-wrap"><div class="car-track" id="carTrack">
+      <div class="car-slide" onclick="go('article')"><img class="car-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt=""><div class="car-body"><div class="car-cat">Technology</div><div class="car-ttl">Quantum Computing Enters Commercial Phase: What Businesses Must Know Now</div></div></div>
+      <div class="car-slide" onclick="go('article')"><img class="car-img" src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=600&q=80" alt=""><div class="car-body"><div class="car-cat">Investment</div><div class="car-ttl">Sovereign Wealth Funds Pour $80B Into Emerging Market Infrastructure</div></div></div>
+      <div class="car-slide" onclick="go('article')"><img class="car-img" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80" alt=""><div class="car-body"><div class="car-cat">Leadership</div><div class="car-ttl">The New CEO Playbook: How Top Leaders Navigate Disruption in 2025</div></div></div>
+      <div class="car-slide" onclick="go('article')"><img class="car-img" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=600&q=80" alt=""><div class="car-body"><div class="car-cat">Sustainability</div><div class="car-ttl">Green Finance: The $15 Trillion Opportunity Reshaping Capital Markets</div></div></div>
+      <div class="car-slide" onclick="go('article')"><img class="car-img" src="https://images.unsplash.com/photo-1623659248894-1a0272243054?w=600&q=80" alt=""><div class="car-body"><div class="car-cat">E-Commerce</div><div class="car-ttl">How Cross-Border Commerce Is Redefining Global Trade in the Digital Age</div></div></div>
+    </div></div>
+    <div class="car-controls">
+      <button class="car-btn" onclick="carSlide(-1)">←</button>
+      <button class="car-btn" onclick="carSlide(1)">→</button>
+      <div class="car-dots" id="carDots">
+        <div class="car-dot on" onclick="carGo(0)"></div><div class="car-dot" onclick="carGo(1)"></div><div class="car-dot" onclick="carGo(2)"></div><div class="car-dot" onclick="carGo(3)"></div><div class="car-dot" onclick="carGo(4)"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKETPLACE PREVIEW -->
+  <section class="mp-prev">
+    <div class="si">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:52px">
+        <div><div class="tag">Marketplace</div><h2 class="h1">Featured <em>Businesses</em></h2><p class="lead">Explore verified, premium-listed businesses from across the globe.</p></div>
+        <button class="btn-p" onclick="go('marketplace')" style="height:fit-content"><span>View All Listings</span><span>→</span></button>
+      </div>
+      <div class="biz-grid">
+        <div class="biz-card rv" onclick="go('marketplace')"><div class="feat-badge">⭐ Featured</div><div class="biz-banner" style="background:linear-gradient(135deg,#0a1628,#1a3050)"></div><div class="biz-header"><div class="biz-logo" style="color:var(--gold)">NX</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">NexaTech Global</div><div class="biz-cat">Technology · AI</div><div class="biz-desc">Enterprise AI solutions for Fortune 500 companies. ML, data analytics, and intelligent automation at scale.</div></div><div class="biz-foot"><div class="biz-contact">🌐 nexatechglobal.com</div><div class="biz-cta">View Profile →</div></div></div>
+        <div class="biz-card rv d1" onclick="go('marketplace')"><div class="spon-badge">Sponsored</div><div class="biz-banner" style="background:linear-gradient(135deg,#0f3320,#1a5534)"></div><div class="biz-header"><div class="biz-logo" style="color:var(--em)">GF</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">GreenFlow Capital</div><div class="biz-cat">Finance · ESG</div><div class="biz-desc">Leading green bond issuance and ESG investment advisory for sovereign funds and global institutions.</div></div><div class="biz-foot"><div class="biz-contact">📍 London, UK</div><div class="biz-cta">View Profile →</div></div></div>
+        <div class="biz-card rv d2" onclick="go('marketplace')"><div class="biz-banner" style="background:linear-gradient(135deg,#1a0a28,#3a1060)"></div><div class="biz-header"><div class="biz-logo" style="color:#9f7aea">MH</div><div class="biz-vbadge" style="color:var(--g4);font-size:10px">Unverified</div></div><div class="biz-body"><div class="biz-name">MedHub Africa</div><div class="biz-cat">Healthcare · Telehealth</div><div class="biz-desc">Pan-African digital healthcare connecting 40M patients to certified doctors via mobile-first platforms.</div></div><div class="biz-foot"><div class="biz-contact">📍 Lagos, Nigeria</div><div class="biz-cta">View Profile →</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <div class="nl-sec rv">
+    <div style="position:relative;z-index:1">
+      <div class="nl-title">Stay Ahead of the <em>Business Curve</em></div>
+      <p class="nl-sub">Join 12,000+ executives, founders, and investors receiving our weekly intelligence brief.</p>
+      <div class="nl-form"><input class="nl-inp" type="email" placeholder="Your business email"><button class="nl-btn" onclick="toast('Welcome to RACKYWEB Global! ✓')">Subscribe</button></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer"><div class="fi">
+    <div class="f-grid">
+      <div><div class="f-logo">RACKYWEB</div><div class="f-tagline">Global Media</div><p class="f-desc">The world's premier platform for business intelligence, startup discovery, and commercial innovation. Trusted by 12,000+ business leaders across 180 countries.</p><div class="f-socials"><div class="f-soc">X</div><div class="f-soc">in</div><div class="f-soc">f</div><div class="f-soc">IG</div><div class="f-soc">YT</div></div></div>
+      <div><div class="f-col-ttl">Platform</div><div class="f-links"><a class="f-link" href="#" onclick="go('blog');return false">Blog &amp; Media</a><a class="f-link" href="#" onclick="go('marketplace');return false">Marketplace</a><a class="f-link" href="#" onclick="go('dashboard');return false">Dashboard</a><a class="f-link" href="#" onclick="go('pricing');return false">Pricing</a><a class="f-link" href="#" onclick="go('partner');return false">Become a Partner</a></div></div>
+      <div><div class="f-col-ttl">Company</div><div class="f-links"><a class="f-link" href="#" onclick="go('about');return false">About Us</a><a class="f-link" href="#">Editorial Team</a><a class="f-link" href="#">Careers</a><a class="f-link" href="#">Press Kit</a><a class="f-link" href="#" onclick="go('contact');return false">Contact</a></div></div>
+      <div><div class="f-col-ttl">Legal</div><div class="f-links"><a class="f-link" href="#">Privacy Policy</a><a class="f-link" href="#">Terms of Service</a><a class="f-link" href="#">Cookie Policy</a><a class="f-link" href="#">GDPR</a><a class="f-link" href="#">Disclaimer</a></div></div>
+    </div>
+    <div class="f-bottom"><div class="f-copy">© 2025 RACKYWEB Global Media. All rights reserved. Registered in Delaware, USA.</div><div class="f-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div></div>
+  </div></footer>
+</div><!-- /page-home -->
+
+<!-- ══════════════════════════════════════════════════
+     BLOG PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-blog" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Global Business Media</div><h1 class="ph-title">Intelligence for the Business Elite</h1><p class="ph-sub">Authoritative journalism covering technology, finance, startups, and global commerce.</p></div></div>
+  <div class="blog-ctrl"><div class="blog-ctrl-in">
+    <div class="b-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Search articles, topics, authors..."></div>
+    <div class="b-filters">
+      <button class="fb on" onclick="bFilter(this)">All</button>
+      <button class="fb" onclick="bFilter(this)">Technology</button>
+      <button class="fb" onclick="bFilter(this)">Finance</button>
+      <button class="fb" onclick="bFilter(this)">Startups</button>
+      <button class="fb" onclick="bFilter(this)">Leadership</button>
+      <button class="fb" onclick="bFilter(this)">Africa</button>
+    </div>
+  </div></div>
+  <div class="blog-layout">
+    <div>
+      <div class="blog-feat-card" onclick="go('article')">
+        <div class="bfc-img"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt=""></div>
+        <div class="bfc-body"><div class="bfc-lbl">✦ Editor's Pick · Cover Story</div><div class="bfc-ttl">The $500 Billion AI Opportunity: How African Startups Are Rewriting Global Tech</div><div class="bfc-exc">A comprehensive investigation into how a new generation of African tech founders is building infrastructure that rivals Silicon Valley — attracting the world's biggest investors.</div><div class="bfc-foot"><div class="ba-info"><div class="ba-av">AO</div><div><div class="ba-name">Amara Osei-Bonsu</div><div class="ba-date">May 8, 2025 · 8 min read</div></div></div><div class="b-rt">🔥 Trending</div></div></div>
+      </div>
+      <div class="b-list">
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=300&q=80" alt=""><div><div class="b-item-cat">Fintech</div><div class="b-item-ttl">DeFi 2.0: The New Infrastructure Layer for Global Commerce and Cross-Border Payments</div><div class="b-item-meta">Marcus Webb · May 7, 2025 · 6 min read</div></div></div>
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=300&q=80" alt=""><div><div class="b-item-cat">Venture Capital</div><div class="b-item-ttl">Inside the World's Most Aggressive Startup Ecosystem: Singapore's Billion-Dollar Bet</div><div class="b-item-meta">Priya Sharma · May 6, 2025 · 5 min read</div></div></div>
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&q=80" alt=""><div><div class="b-item-cat">Technology</div><div class="b-item-ttl">Quantum Computing Enters Commercial Phase: A CEO's Complete Guide for 2025</div><div class="b-item-meta">James Thornton · May 5, 2025 · 10 min read</div></div></div>
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=300&q=80" alt=""><div><div class="b-item-cat">Investment</div><div class="b-item-ttl">Sovereign Wealth Funds Pour $80B Into Emerging Market Infrastructure — Here's Where</div><div class="b-item-meta">Fatima Al-Rashidi · May 4, 2025 · 7 min read</div></div></div>
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=300&q=80" alt=""><div><div class="b-item-cat">Leadership</div><div class="b-item-ttl">The New CEO Playbook: How Top Leaders Are Navigating Disruption in 2025</div><div class="b-item-meta">Elena Voss · May 3, 2025 · 9 min read</div></div></div>
+        <div class="b-item" onclick="go('article')"><img class="b-thumb" src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=300&q=80" alt=""><div><div class="b-item-cat">Sustainability</div><div class="b-item-ttl">Green Finance: The $15 Trillion Opportunity That's Reshaping Global Capital Markets</div><div class="b-item-meta">David Okafor · May 2, 2025 · 8 min read</div></div></div>
+      </div>
+    </div>
+    <div class="blog-sidebar">
+      <div class="sidebar-w"><div class="sw-ttl">Trending Now</div><div class="trend-list">
+        <div class="trend-item" onclick="go('article')"><div class="trend-n">01</div><div><div class="trend-ttl">The AI Startup You've Never Heard of Worth $4B</div><div class="trend-meta">12.4K reads · Technology</div></div></div>
+        <div class="trend-item" onclick="go('article')"><div class="trend-n">02</div><div><div class="trend-ttl">Why Dubai Is Becoming the World's Next Financial Capital</div><div class="trend-meta">9.8K reads · Finance</div></div></div>
+        <div class="trend-item" onclick="go('article')"><div class="trend-n">03</div><div><div class="trend-ttl">Inside the Billion-Dollar Startup With Zero Employees</div><div class="trend-meta">8.2K reads · Startups</div></div></div>
+        <div class="trend-item" onclick="go('article')"><div class="trend-n">04</div><div><div class="trend-ttl">The Truth About Unicorn Valuations in a Bear Market</div><div class="trend-meta">6.5K reads · Investment</div></div></div>
+      </div></div>
+      <div class="sidebar-w" style="background:var(--black)"><div class="sw-ttl" style="color:#fff;border-color:var(--gold)">Newsletter</div><p style="font-size:13px;color:rgba(255,255,255,.4);margin-bottom:14px;line-height:1.65">Join 12K+ executives receiving our weekly brief.</p><input class="nl-inp" type="email" placeholder="Your email" style="margin-bottom:8px;display:block;width:100%;border:1px solid rgba(255,255,255,.14)"><button class="nl-btn" style="width:100%" onclick="toast('Subscribed! ✓')">Subscribe Free</button></div>
+      <div class="sidebar-w"><div class="sw-ttl">Popular Tags</div><div class="tag-cloud"><span class="tag-pill">AI</span><span class="tag-pill">Fintech</span><span class="tag-pill">Startups</span><span class="tag-pill">Africa</span><span class="tag-pill">VC Funding</span><span class="tag-pill">Leadership</span><span class="tag-pill">ESG</span><span class="tag-pill">Crypto</span><span class="tag-pill">SaaS</span><span class="tag-pill">IPO</span><span class="tag-pill">M&amp;A</span><span class="tag-pill">Web3</span></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     ARTICLE PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-article" class="page">
+  <div class="art-hero"><div class="art-hi">
+    <div class="art-cats"><span class="art-cat">Technology</span><span class="art-cat">Artificial Intelligence</span><span class="art-cat">Africa</span></div>
+    <h1 class="art-title">The $500 Billion AI Opportunity: How African Startups Are Rewriting Global Tech</h1>
+    <p class="art-sub">A comprehensive investigation into how a new generation of African tech founders is building infrastructure that rivals Silicon Valley.</p>
+    <div class="art-byline"><div class="art-av">AO</div><div><div class="art-aname">Amara Osei-Bonsu</div><div class="art-arole">Senior Editor, Technology &amp; Innovation</div></div><div class="art-date">May 8, 2025 · 8 min read</div></div>
+  </div></div>
+  <img class="art-img-full" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1400&q=80" alt="">
+  <div class="art-body-wrap">
+    <article class="art-body">
+      <p>The numbers are staggering. In the past 24 months alone, African technology startups have collectively raised over $12 billion in venture capital — a figure that would have seemed impossible just five years ago. But this is only the beginning of a seismic shift that is quietly reshaping the global technology landscape.</p>
+      <p>At the center of this transformation is a new breed of founder: technically brilliant, globally connected, and deeply frustrated with the limitations of existing infrastructure. They are not building apps. They are building the rails.</p>
+      <div class="pull-q"><p>"We are not copying Silicon Valley. We are solving problems Silicon Valley never had to think about — and the solutions we build will serve the entire world."</p></div>
+      <h2>The Infrastructure Bet</h2>
+      <p>When Lagos-based NovaPay processed its one-billionth transaction earlier this year, it marked a watershed moment not just for Nigeria's fintech sector, but for the entire continent's ambitions. The company — founded by two former Goldman Sachs analysts — had built an entirely new payment infrastructure from scratch, bypassing the legacy banking systems that have constrained commerce across Sub-Saharan Africa for decades.</p>
+      <p>This approach — building infrastructure rather than applications — has become the defining philosophy of Africa's most successful technology companies. While Western tech focused on convenience and optimization, African tech founders have been compelled by necessity to tackle the fundamental layers: identity verification, payment rails, logistics networks, and energy infrastructure.</p>
+      <h2>Global Capital Follows Bold Vision</h2>
+      <p>The investor community has taken notice. Sequoia Capital's first Africa-focused fund launched in 2023 with $2.8 billion in commitments. SoftBank's Vision Fund has deployed over $4 billion across 14 African tech companies. And sovereign wealth funds from the UAE, Saudi Arabia, and Singapore have collectively committed over $20 billion to African infrastructure and technology over the next decade.</p>
+      <p>But perhaps the most telling signal is the behavior of the world's largest corporations. Microsoft, Google, Amazon, and Meta have all made significant operational commitments to the continent — not as charity, but as pure commercial strategy. Africa is, by every meaningful metric, the world's last major frontier market.</p>
+      <h2>What This Means for Global Business</h2>
+      <p>The implications extend far beyond the African continent. The payment infrastructure being built in Lagos today will power transactions in London, New York, and Singapore within the next decade. The AI models being trained on African linguistic datasets will serve a third of humanity. The logistics networks being constructed across East Africa will integrate with global supply chains in ways that fundamentally alter competitive dynamics.</p>
+      <p>For business leaders watching from the sidelines, the message is unambiguous: the next major technology platforms — the ones that will define commerce in the 2030s — are being built right now, and many of them are being built in Africa. The question is not whether to engage with this opportunity. The question is how quickly you can get there.</p>
+      <div class="comments">
+        <div class="tag" style="color:var(--gold-dark);margin-bottom:22px">24 Comments</div>
+        <div class="cm-inp-area"><h3>Join the Conversation</h3><textarea class="cm-inp" placeholder="Share your perspective on this article..."></textarea><button class="btn-sm-g" onclick="toast('Comment posted!')">Post Comment</button></div>
+        <div class="cm-list">
+          <div class="cm-item"><div class="cm-av" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark))">JK</div><div><div class="cm-head"><span class="cm-name">James Kirkland</span><span class="cm-date">May 8, 2025 · 2h ago</span></div><div class="cm-txt">Outstanding analysis. The infrastructure thesis is absolutely correct — we've been investing in African fintech infrastructure for 3 years and the returns have been extraordinary. The fundamentals are unlike anything else in global markets right now.</div></div></div>
+          <div class="cm-item"><div class="cm-av" style="background:linear-gradient(135deg,var(--em),var(--em-dark))">PS</div><div><div class="cm-head"><span class="cm-name">Priya Subramaniam</span><span class="cm-date">May 8, 2025 · 4h ago</span></div><div class="cm-txt">The NovaPay milestone is remarkable. The more interesting story is what's happening in East Africa with agricultural fintech — the combination of mobile money and AI-driven credit scoring for smallholder farmers is genuinely transformative.</div></div></div>
+          <div class="cm-item"><div class="cm-av" style="background:linear-gradient(135deg,#6366f1,#4338ca)">MO</div><div><div class="cm-head"><span class="cm-name">Mohammed Al-Obeidi</span><span class="cm-date">May 8, 2025 · 6h ago</span></div><div class="cm-txt">Our sovereign fund has committed $1.2B to African tech infrastructure. The due diligence we've done confirms every point in this article. The talent density in Lagos, Nairobi, and Cape Town is world-class. This is a once-in-a-generation opportunity.</div></div></div>
+        </div>
+      </div>
+    </article>
+    <div>
+      <div class="sidebar-w"><div class="sw-ttl">Related Articles</div><div class="trend-list"><div class="trend-item" onclick="go('article')"><div class="trend-n">01</div><div><div class="trend-ttl">Lagos Tech Ecosystem Report 2025</div><div class="trend-meta">8.3K reads</div></div></div><div class="trend-item" onclick="go('article')"><div class="trend-n">02</div><div><div class="trend-ttl">VC's New Frontier: African B2B SaaS</div><div class="trend-meta">6.1K reads</div></div></div><div class="trend-item" onclick="go('article')"><div class="trend-n">03</div><div><div class="trend-ttl">Mobile Money and the Next Billion</div><div class="trend-meta">5.7K reads</div></div></div></div></div>
+      <div class="sidebar-w" style="background:var(--black);margin-top:22px"><div class="sw-ttl" style="color:#fff;border-color:var(--gold)">Author</div><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div class="art-av">AO</div><div><div style="font-size:14px;font-weight:600;color:#fff">Amara Osei-Bonsu</div><div style="font-size:12px;color:var(--gold)">Senior Editor</div></div></div><p style="font-size:13px;color:rgba(255,255,255,.38);line-height:1.7">Award-winning journalist covering technology and business across Sub-Saharan Africa. Former Financial Times Africa correspondent.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     MARKETPLACE PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-marketplace" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Global Business Marketplace</div><h1 class="ph-title">Discover &amp; Connect with Verified Businesses</h1><p class="ph-sub">3,200+ verified businesses, startups, and enterprises across 180 countries.</p></div></div>
+  <div class="mp-layout">
+    <div class="mp-hero-bar"><div><h2>List Your Business Today</h2><p>Get discovered by thousands of investors, partners, and clients worldwide.</p></div><button class="post-btn" onclick="openModal('postModal')">+ Post Your Business</button></div>
+    <div class="mp-flt-bar">
+      <div class="mp-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><input type="text" placeholder="Search businesses, categories..."></div>
+      <button class="cf on" onclick="mpFilter(this)">All Industries</button>
+      <button class="cf" onclick="mpFilter(this)">Technology</button>
+      <button class="cf" onclick="mpFilter(this)">Finance</button>
+      <button class="cf" onclick="mpFilter(this)">Healthcare</button>
+      <button class="cf" onclick="mpFilter(this)">E-Commerce</button>
+      <button class="cf" onclick="mpFilter(this)">Media</button>
+    </div>
+    <div class="mp-grid">
+      <div class="biz-card"><div class="feat-badge">⭐ Featured</div><div class="biz-banner" style="background:linear-gradient(135deg,#0a1628,#1a3050)"></div><div class="biz-header"><div class="biz-logo" style="color:var(--gold)">NX</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">NexaTech Global</div><div class="biz-cat">Technology · AI</div><div class="biz-desc">Enterprise AI solutions for Fortune 500 companies. ML, data analytics, intelligent automation at scale.</div></div><div class="biz-foot"><div class="biz-contact">🌐 nexatechglobal.com</div><div class="biz-cta">View Profile →</div></div></div>
+      <div class="biz-card"><div class="spon-badge">Sponsored</div><div class="biz-banner" style="background:linear-gradient(135deg,#0f3320,#1a5534)"></div><div class="biz-header"><div class="biz-logo" style="color:var(--em)">GF</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">GreenFlow Capital</div><div class="biz-cat">Finance · ESG</div><div class="biz-desc">Leading green bond issuance and ESG investment advisory for sovereign funds globally.</div></div><div class="biz-foot"><div class="biz-contact">📍 London, UK</div><div class="biz-cta">View Profile →</div></div></div>
+      <div class="biz-card"><div class="biz-banner" style="background:linear-gradient(135deg,#1a0a28,#3a1060)"></div><div class="biz-header"><div class="biz-logo" style="color:#9f7aea">MH</div><div class="biz-vbadge" style="color:var(--g4);font-size:10px">Unverified</div></div><div class="biz-body"><div class="biz-name">MedHub Africa</div><div class="biz-cat">Healthcare · Telehealth</div><div class="biz-desc">Pan-African digital healthcare connecting 40M patients via mobile-first telehealth platforms.</div></div><div class="biz-foot"><div class="biz-contact">📍 Lagos, Nigeria</div><div class="biz-cta">View Profile →</div></div></div>
+      <div class="biz-card"><div class="feat-badge">⭐ Featured</div><div class="biz-banner" style="background:linear-gradient(135deg,#1a1000,#3a2800)"></div><div class="biz-header"><div class="biz-logo" style="color:var(--gold-dark)">SP</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">SilkPath Trade Co.</div><div class="biz-cat">E-Commerce · Trade</div><div class="biz-desc">Global cross-border trade connecting Asian manufacturers with African and Latin American retailers.</div></div><div class="biz-foot"><div class="biz-contact">📍 Dubai, UAE</div><div class="biz-cta">View Profile →</div></div></div>
+      <div class="biz-card"><div class="biz-banner" style="background:linear-gradient(135deg,#0a1a1a,#0f3030)"></div><div class="biz-header"><div class="biz-logo" style="color:#22d3ee">EL</div><div class="biz-vbadge" style="color:var(--g4);font-size:10px">Pending</div></div><div class="biz-body"><div class="biz-name">EduLeap Global</div><div class="biz-cat">Education · EdTech</div><div class="biz-desc">AI-powered personalized learning serving 2.8M students across 34 countries with adaptive curriculum.</div></div><div class="biz-foot"><div class="biz-contact">📍 Nairobi, Kenya</div><div class="biz-cta">View Profile →</div></div></div>
+      <div class="biz-card"><div class="spon-badge">Sponsored</div><div class="biz-banner" style="background:linear-gradient(135deg,#1a0a0a,#3a1010)"></div><div class="biz-header"><div class="biz-logo" style="color:#f87171">PR</div><div class="biz-vbadge"><svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>Verified</div></div><div class="biz-body"><div class="biz-name">PropReal Group</div><div class="biz-cat">Real Estate · PropTech</div><div class="biz-desc">Tech-driven real estate investment with $2.3B in assets under management across prime global markets.</div></div><div class="biz-foot"><div class="biz-contact">📍 New York, USA</div><div class="biz-cta">View Profile →</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     DASHBOARD PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="dash-page"><div class="dash-layout">
+    <div class="dash-sb">
+      <div class="dsb-logo"><div class="dsb-logo-t">RACKYWEB</div><div class="dsb-logo-s">User Dashboard</div></div>
+      <nav class="dsb-nav">
+        <div class="dsb-sec"><div class="dsb-sec-lbl">Overview</div>
+          <div class="dsb-item on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Analytics<span class="dsb-badge">New</span></div>
+        </div>
+        <div class="dsb-sec"><div class="dsb-sec-lbl">Content</div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>My Articles</div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>My Listings<span class="dsb-badge em">3</span></div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"/></svg>Saved</div>
+        </div>
+        <div class="dsb-sec"><div class="dsb-sec-lbl">Account</div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>Notifications<span class="dsb-badge red">5</span></div>
+          <div class="dsb-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings</div>
+        </div>
+      </nav>
+      <div class="dsb-user"><div class="dsb-u-in"><div class="dsb-u-av">JD</div><div><div class="dsb-u-name">James Donovan</div><div class="dsb-u-role">Premium Member</div></div></div></div>
+    </div>
+    <main class="dash-main">
+      <div class="dash-topbar">
+        <div><div class="dash-welcome">Good morning, <span>James</span> 👋</div><div class="dash-date">Sunday, May 11, 2025</div></div>
+        <div class="dash-acts"><button class="dash-notif">🔔<span class="notif-dot"></span></button><button class="dash-act-btn" onclick="openModal('postModal')">+ New Listing</button></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi gld"><div class="kpi-lbl">Profile Views</div><div class="kpi-val">4,821</div><div class="kpi-chg up">↑ +18.4% this month</div></div>
+        <div class="kpi em"><div class="kpi-lbl">Article Reads</div><div class="kpi-val">12.3K</div><div class="kpi-chg up">↑ +32% this month</div></div>
+        <div class="kpi blk"><div class="kpi-lbl">Business Inquiries</div><div class="kpi-val">47</div><div class="kpi-chg up">↑ +8 this week</div></div>
+        <div class="kpi blu"><div class="kpi-lbl">Connections</div><div class="kpi-val">283</div><div class="kpi-chg up">↑ +14 this week</div></div>
+      </div>
+      <div class="dash-2col">
+        <div class="dash-card"><div class="dc-ttl">Traffic Overview</div><div class="dc-sub">Profile &amp; article views over the past 7 days</div>
+          <div class="chart-bars">
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:45%"></div></div><div class="cb-lbl">Mon</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:68%"></div></div><div class="cb-lbl">Tue</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:52%"></div></div><div class="cb-lbl">Wed</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill em" style="height:82%"></div></div><div class="cb-lbl">Thu</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:74%"></div></div><div class="cb-lbl">Fri</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill em" style="height:96%"></div></div><div class="cb-lbl">Sat</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:88%"></div></div><div class="cb-lbl">Sun</div></div>
+          </div>
+        </div>
+        <div class="dash-card"><div class="dc-ttl">Recent Activity</div><div class="dc-sub">Your latest platform interactions</div>
+          <div class="activity-list">
+            <div class="act-item"><div class="act-dot gld"></div><div><div class="act-txt"><strong>NexaTech Global</strong> viewed your business profile</div><div class="act-time">2 minutes ago</div></div></div>
+            <div class="act-item"><div class="act-dot em"></div><div><div class="act-txt">New comment on <strong>"DeFi 2.0 Analysis"</strong></div><div class="act-time">18 minutes ago</div></div></div>
+            <div class="act-item"><div class="act-dot gld"></div><div><div class="act-txt"><strong>Priya Sharma</strong> sent a connection request</div><div class="act-time">1 hour ago</div></div></div>
+            <div class="act-item"><div class="act-dot gr"></div><div><div class="act-txt">Listing <strong>"GreenFlow Capital"</strong> was approved</div><div class="act-time">3 hours ago</div></div></div>
+            <div class="act-item"><div class="act-dot em"></div><div><div class="act-txt">Your article reached <strong>10,000 reads</strong> milestone</div><div class="act-time">Yesterday</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-table"><div class="dt-hd"><div class="dt-ttl">My Business Listings</div><div class="dt-act">View All →</div></div>
+        <table><thead><tr><th>Business Name</th><th>Category</th><th>Views</th><th>Inquiries</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>GreenFlow Capital</strong></td><td>Finance · ESG</td><td>1,284</td><td>18</td><td><span class="ts act">Active</span></td><td><a class="t-al">Edit</a></td></tr>
+          <tr><td><strong>NexaTech Blog</strong></td><td>Technology</td><td>842</td><td>7</td><td><span class="ts pend">Pending</span></td><td><a class="t-al">Edit</a></td></tr>
+          <tr><td><strong>EduLeap Global</strong></td><td>Education</td><td>312</td><td>4</td><td><span class="ts pend">Pending</span></td><td><a class="t-al">Edit</a></td></tr>
+        </tbody></table>
+      </div>
+    </main>
+  </div></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     ADMIN DASHBOARD PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <div class="dash-page"><div class="dash-layout">
+    <div class="dash-sb">
+      <div class="dsb-logo"><div class="dsb-logo-t">RACKYWEB <span style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;padding:2px 7px;text-transform:uppercase;font-family:var(--fb)">ADMIN</span></div><div class="dsb-logo-s">Control Panel</div></div>
+      <nav class="dsb-nav">
+        <div class="dsb-sec"><div class="dsb-sec-lbl">Management</div>
+          <div class="dsb-item on">📊 Overview</div>
+          <div class="dsb-item">👥 Users <span class="dsb-badge">2.4K</span></div>
+          <div class="dsb-item">🏢 Listings <span class="dsb-badge em">47</span></div>
+          <div class="dsb-item">📝 Articles</div>
+          <div class="dsb-item">💰 Revenue</div>
+          <div class="dsb-item">🚩 Reports <span class="dsb-badge red">12</span></div>
+          <div class="dsb-item">⚙️ Settings</div>
+        </div>
+      </nav>
+      <div class="dsb-user"><div class="dsb-u-in"><div class="dsb-u-av" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark))">SA</div><div><div class="dsb-u-name">Super Admin</div><div class="dsb-u-role" style="color:var(--gold)">Administrator</div></div></div></div>
+    </div>
+    <main class="dash-main">
+      <div class="dash-topbar">
+        <div><div class="dash-welcome">Admin <span>Control Center</span></div><div class="dash-date">Full platform overview &amp; management</div></div>
+        <div class="dash-acts"><button class="dash-notif">🔔<span class="notif-dot"></span></button><button class="dash-act-btn" style="background:var(--em)">Export Report</button></div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi gld"><div class="kpi-lbl">Total Revenue</div><div class="kpi-val">$284K</div><div class="kpi-chg up">↑ +24% MoM</div></div>
+        <div class="kpi em"><div class="kpi-lbl">Active Users</div><div class="kpi-val">12,481</div><div class="kpi-chg up">↑ +1,240 new</div></div>
+        <div class="kpi blk"><div class="kpi-lbl">Pending Listings</div><div class="kpi-val">47</div><div class="kpi-chg dn">↓ Needs review</div></div>
+        <div class="kpi blu"><div class="kpi-lbl">Published Articles</div><div class="kpi-val">840</div><div class="kpi-chg up">↑ +18 this week</div></div>
+      </div>
+      <div class="dash-2col">
+        <div class="dash-card"><div class="dc-ttl">Revenue Overview</div><div class="dc-sub">Monthly revenue over the past 7 months</div>
+          <div class="chart-bars">
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:55%"></div></div><div class="cb-lbl">Nov</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill em" style="height:62%"></div></div><div class="cb-lbl">Dec</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:58%"></div></div><div class="cb-lbl">Jan</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill em" style="height:71%"></div></div><div class="cb-lbl">Feb</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:78%"></div></div><div class="cb-lbl">Mar</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill em" style="height:85%"></div></div><div class="cb-lbl">Apr</div></div>
+            <div class="cb-wrap"><div class="cb-track"><div class="cb-fill" style="height:96%"></div></div><div class="cb-lbl">May</div></div>
+          </div>
+        </div>
+        <div class="dash-card"><div class="dc-ttl">Platform Health</div><div class="dc-sub">Key operational metrics</div>
+          <div class="activity-list">
+            <div class="act-item"><div class="act-dot em"></div><div><div class="act-txt"><strong>Server uptime:</strong> 99.98% this month</div><div class="act-time">All systems operational</div></div></div>
+            <div class="act-item"><div class="act-dot gld"></div><div><div class="act-txt"><strong>47 new listings</strong> pending verification</div><div class="act-time">Oldest: 2 days ago</div></div></div>
+            <div class="act-item"><div class="act-dot em"></div><div><div class="act-txt"><strong>1,240 new users</strong> registered this month</div><div class="act-time">+18% vs last month</div></div></div>
+            <div class="act-item"><div class="act-dot gr"></div><div><div class="act-txt"><strong>12 abuse reports</strong> awaiting review</div><div class="act-time">SLA: respond within 24h</div></div></div>
+            <div class="act-item"><div class="act-dot gld"></div><div><div class="act-txt"><strong>Payment processing</strong> running normally</div><div class="act-time">$284K processed this month</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dash-table"><div class="dt-hd"><div class="dt-ttl">Recent Listing Submissions</div><div class="dt-act">View All →</div></div>
+        <table><thead><tr><th>Business Name</th><th>Category</th><th>Country</th><th>Submitted</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><strong>NexaTech Global</strong></td><td>Technology · AI</td><td>USA</td><td>May 10, 2025</td><td><span class="ts act">Active</span></td><td><a class="t-al">Review</a></td></tr>
+          <tr><td><strong>MedHub Africa</strong></td><td>Healthcare</td><td>Nigeria</td><td>May 9, 2025</td><td><span class="ts pend">Pending</span></td><td><a class="t-al">Review</a></td></tr>
+          <tr><td><strong>EduLeap Global</strong></td><td>EdTech</td><td>Kenya</td><td>May 9, 2025</td><td><span class="ts pend">Pending</span></td><td><a class="t-al">Review</a></td></tr>
+          <tr><td><strong>SilkPath Trade</strong></td><td>E-Commerce</td><td>UAE</td><td>May 8, 2025</td><td><span class="ts act">Active</span></td><td><a class="t-al">Review</a></td></tr>
+          <tr><td><strong>PropReal Group</strong></td><td>Real Estate</td><td>USA</td><td>May 7, 2025</td><td><span class="ts rej">Rejected</span></td><td><a class="t-al">Review</a></td></tr>
+        </tbody></table>
+      </div>
+    </main>
+  </div></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     ABOUT PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-about" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Our Story</div><h1 class="ph-title">Built for the World's Business Builders</h1><p class="ph-sub">RACKYWEB Global Media was founded on a belief: the world's most important business stories deserve a world-class platform.</p></div></div>
+  <div class="about-story">
+    <div>
+      <div class="tag">Mission &amp; Vision</div>
+      <h2 class="h1">We Connect the <em>World's</em> Business Ecosystem</h2>
+      <p class="lead" style="margin-bottom:20px">Founded in 2020, RACKYWEB Global Media has grown from a boutique business intelligence newsletter into the world's most influential platform for startup discovery, business journalism, and commercial networking.</p>
+      <p style="font-size:15px;color:var(--g5);line-height:1.82;margin-bottom:22px">Our editorial team of 48 journalists and analysts spans 22 countries, producing authoritative coverage of business trends, technologies, and leaders shaping the global economy. Our marketplace connects 3,200+ verified businesses with the investors, partners, and clients that accelerate their growth.</p>
+      <p style="font-size:15px;color:var(--g5);line-height:1.82;margin-bottom:32px">We believe the best business opportunities exist at the intersection of great storytelling and powerful connectivity — and that is exactly what we have built.</p>
+      <button class="btn-p" onclick="go('partner')"><span>Partner With Us</span><span>→</span></button>
+    </div>
+    <div class="as-img-wrap"><img class="as-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Our Team"><div class="as-accent"><div class="as-acc-num">2020</div><div class="as-acc-lbl">Founded</div></div></div>
+  </div>
+  <section class="val-sec"><div class="si"><div class="sh c"><div class="tag center" style="justify-content:center">Core Values</div><h2 class="h1">The Principles That <em>Drive</em> Us</h2></div>
+    <div class="val-grid">
+      <div class="val-card rv"><div class="val-num">01</div><div class="val-ico">✦</div><div class="val-ttl">Editorial Integrity</div><div class="val-txt">Every article, analysis, and report we publish adheres to the highest standards of journalistic integrity. Our editorial team operates independently of commercial relationships. Truth is our only bias.</div></div>
+      <div class="val-card rv d1"><div class="val-num">02</div><div class="val-ico">🌍</div><div class="val-ttl">Global Perspective</div><div class="val-txt">Business is a global language, and we speak it fluently across every continent. We actively champion underrepresented markets and voices that traditional media overlooks.</div></div>
+      <div class="val-card rv d2"><div class="val-num">03</div><div class="val-ico">🛡️</div><div class="val-ttl">Trust &amp; Verification</div><div class="val-txt">Every business listing on our marketplace undergoes rigorous verification. We maintain the highest standards of due diligence so our community can trust every connection they make here.</div></div>
+      <div class="val-card rv d3"><div class="val-num">04</div><div class="val-ico">⚡</div><div class="val-ttl">Innovation First</div><div class="val-txt">We are perpetual students of innovation — in business, in media, and in technology. We build with the future in mind, always asking what will serve our community best tomorrow.</div></div>
+    </div>
+  </div></section>
+  <section class="team-sec"><div class="si"><div class="sh c"><div class="tag center" style="color:var(--gold);justify-content:center">Editorial Leadership</div><h2 class="h1 wh">Meet the <em>Minds</em> Behind the Media</h2></div>
+    <div class="team-grid">
+      <div class="team-card"><div class="t-img-wrap"><img class="team-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt=""></div><div class="team-body"><div class="team-name">David Okafor</div><div class="team-role">CEO &amp; Founder</div><div class="team-socs"><span class="t-soc">LI</span><span class="t-soc">TW</span></div></div></div>
+      <div class="team-card"><div class="t-img-wrap"><img class="team-img" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80" alt=""></div><div class="team-body"><div class="team-name">Elena Voss</div><div class="team-role">Editor-in-Chief</div><div class="team-socs"><span class="t-soc">LI</span><span class="t-soc">TW</span></div></div></div>
+      <div class="team-card"><div class="t-img-wrap"><img class="team-img" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt=""></div><div class="team-body"><div class="team-name">Marcus Webb</div><div class="team-role">Head of Markets</div><div class="team-socs"><span class="t-soc">LI</span><span class="t-soc">TW</span></div></div></div>
+      <div class="team-card"><div class="t-img-wrap"><img class="team-img" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" alt=""></div><div class="team-body"><div class="team-name">Priya Sharma</div><div class="team-role">Asia-Pacific Lead</div><div class="team-socs"><span class="t-soc">LI</span><span class="t-soc">TW</span></div></div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PARTNER PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-partner" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Strategic Partnerships</div><h1 class="ph-title">Build the Future of Business Together</h1><p class="ph-sub">Join our global network of media, technology, and investment partners shaping the next era of commerce.</p></div></div>
+  <div class="partner-tiers"><div class="sh c" style="padding-top:64px"><div class="tag center" style="justify-content:center">Partnership Tiers</div><h2 class="h1">Choose Your <em>Partnership</em> Level</h2></div>
+    <div class="tier-grid">
+      <div class="tier-card"><div class="tier-nm">Associate</div><div class="tier-price">$499</div><div class="tier-period">per month · billed annually</div><div class="tier-feats"><div class="tier-feat"><span class="tfc">✓</span>Basic marketplace listing</div><div class="tier-feat"><span class="tfc">✓</span>2 sponsored articles/year</div><div class="tier-feat"><span class="tfc">✓</span>Newsletter mention</div><div class="tier-feat"><span class="tfc">✓</span>Standard analytics</div><div class="tier-feat"><span class="tfc">✓</span>Partner badge</div></div><button class="tier-cta" onclick="go('contact')">Get Started</button></div>
+      <div class="tier-card feat"><div class="tier-badge">Most Popular</div><div class="tier-nm">Premium</div><div class="tier-price" style="color:var(--gold)">$1,499</div><div class="tier-period">per month · billed annually</div><div class="tier-feats"><div class="tier-feat"><span class="tfc">✓</span>Featured marketplace listing</div><div class="tier-feat"><span class="tfc">✓</span>12 sponsored articles/year</div><div class="tier-feat"><span class="tfc">✓</span>Homepage feature slot</div><div class="tier-feat"><span class="tfc">✓</span>Advanced analytics suite</div><div class="tier-feat"><span class="tfc">✓</span>Verified partner badge</div><div class="tier-feat"><span class="tfc">✓</span>Dedicated account manager</div><div class="tier-feat"><span class="tfc">✓</span>Event speaking opportunities</div></div><button class="tier-cta" onclick="go('contact')">Get Started</button></div>
+      <div class="tier-card"><div class="tier-nm">Institutional</div><div class="tier-price">Custom</div><div class="tier-period">tailored enterprise package</div><div class="tier-feats"><div class="tier-feat"><span class="tfc">✓</span>All Premium features</div><div class="tier-feat"><span class="tfc">✓</span>Custom content studio</div><div class="tier-feat"><span class="tfc">✓</span>White-label reports</div><div class="tier-feat"><span class="tfc">✓</span>API data access</div><div class="tier-feat"><span class="tfc">✓</span>Co-branded global events</div><div class="tier-feat"><span class="tfc">✓</span>Board-level introductions</div></div><button class="tier-cta" onclick="go('contact')">Contact Sales</button></div>
+    </div>
+  </div>
+  <div class="pf-sec"><div class="pf-inner">
+    <div class="sh c"><div class="tag center" style="justify-content:center">Apply Now</div><h2 class="h1">Start Your Partnership</h2><p class="lead" style="margin:14px auto 0;text-align:center;max-width:400px">Our partnerships team will respond within 24 hours.</p></div>
+    <div class="pf-form" style="margin-top:44px">
+      <div class="f2g"><div class="fg"><label class="fl">First Name *</label><input class="fi2" type="text" placeholder="John"></div><div class="fg"><label class="fl">Last Name *</label><input class="fi2" type="text" placeholder="Smith"></div></div>
+      <div class="f2g"><div class="fg"><label class="fl">Company *</label><input class="fi2" type="text" placeholder="Company Name"></div><div class="fg"><label class="fl">Role *</label><input class="fi2" type="text" placeholder="CEO, CMO, Founder..."></div></div>
+      <div class="fg"><label class="fl">Business Email *</label><input class="fi2" type="email" placeholder="you@company.com"></div>
+      <div class="fg"><label class="fl">Partnership Tier *</label><select class="fsel"><option>Select Tier</option><option>Associate ($499/mo)</option><option>Premium ($1,499/mo)</option><option>Institutional (Custom)</option></select></div>
+      <div class="fg"><label class="fl">Partnership Goals</label><textarea class="fi2 ta" placeholder="Tell us about your objectives, target audience, and what success looks like..."></textarea></div>
+      <button class="btn-p" style="width:100%;justify-content:center" onclick="toast('Partnership application submitted! We will contact you within 24 hours.')"><span>Submit Application</span><span>→</span></button>
+    </div>
+  </div></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Get In Touch</div><h1 class="ph-title">Let's Build Something Remarkable</h1></div></div>
+  <div class="contact-layout" style="padding-top:72px">
+    <div>
+      <p class="contact-intro">Whether you're a business leader, journalist, investor, or innovator — we want to hear from you. Our team responds within 24 hours.</p>
+      <div class="c-cards">
+        <div class="c-card"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="c-lbl">Editorial</div><div class="c-val">editorial@rackyweb.com</div></div></div>
+        <div class="c-card"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div><div><div class="c-lbl">Partnerships</div><div class="c-val">partners@rackyweb.com</div></div></div>
+        <div class="c-card"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div><div><div class="c-lbl">Headquarters</div><div class="c-val">340 Madison Ave, New York, NY 10017</div></div></div>
+        <div class="c-card"><div class="c-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div><div><div class="c-lbl">Phone</div><div class="c-val">+1 (212) 555-0192</div></div></div>
+      </div>
+      <div class="wa-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Chat on WhatsApp</div>
+    </div>
+    <div>
+      <div class="cf-card"><div class="cf-ttl">Send a Message</div>
+        <div class="fg"><label class="fl">Full Name *</label><input class="fi2" type="text" placeholder="Your name"></div>
+        <div class="fg"><label class="fl">Email Address *</label><input class="fi2" type="email" placeholder="your@email.com"></div>
+        <div class="fg"><label class="fl">Subject *</label><select class="fsel"><option>General Inquiry</option><option>Partnership Request</option><option>Editorial Pitch</option><option>Marketplace Support</option><option>Press &amp; Media</option></select></div>
+        <div class="fg"><label class="fl">Message *</label><textarea class="fi2 ta" placeholder="Tell us how we can help..."></textarea></div>
+        <button class="btn-p" style="width:100%;justify-content:center" onclick="toast('Message sent! We will respond within 24 hours.')"><span>Send Message</span><span>→</span></button>
+      </div>
+      <div style="background:var(--black);padding:26px;margin-top:18px">
+        <div style="font-family:var(--fd);font-size:18px;font-weight:700;color:#fff;margin-bottom:6px">Book a Strategy Call</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.38);margin-bottom:18px;line-height:1.65">Schedule a 30-min call with our partnerships team.</p>
+        <button class="btn-p" style="width:100%;justify-content:center" onclick="toast('Booking link sent to your email! Check your inbox.')"><span>Schedule 30-min Call</span><span>→</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     LOGIN PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-wrap">
+    <div class="auth-left">
+      <div style="text-align:center;position:relative">
+        <div style="font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px">RACKYWEB Global Media</div>
+        <div class="auth-bigttl">Intelligence That<br>Drives <em>Decisions</em></div>
+        <div class="auth-bigsub">Sign in to access your personalized business intelligence dashboard, saved articles, and marketplace listings.</div>
+        <div class="auth-feats">
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Access 840+ premium business articles</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Manage your marketplace listings</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Connect with 12,000+ global professionals</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Real-time analytics and insights</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-logo">RACKY<span>WEB</span></div>
+      <div class="auth-h">Welcome back</div>
+      <div class="auth-sub">Sign in to your account to continue.</div>
+      <div class="auth-form">
+        <button class="auth-soc-btn"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Continue with Google</button>
+        <div class="auth-divider">or</div>
+        <div class="fg"><label class="fl">Email Address</label><input class="fi2" type="email" placeholder="you@company.com"></div>
+        <div class="fg"><label class="fl">Password</label><input class="fi2" type="password" placeholder="Enter your password"></div>
+        <div style="display:flex;justify-content:flex-end"><a href="#" style="font-size:13px;color:var(--gold-dark);font-weight:600">Forgot password?</a></div>
+        <button class="auth-submit" onclick="go('dashboard');toast('Welcome back to RACKYWEB! ✓')">Sign In</button>
+      </div>
+      <div class="auth-switch">Don't have an account? <a href="#" onclick="go('signup')">Create account →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     SIGNUP PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-signup" class="page">
+  <div class="auth-wrap">
+    <div class="auth-left">
+      <div style="text-align:center;position:relative">
+        <div style="font-family:var(--fd);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px">RACKYWEB Global Media</div>
+        <div class="auth-bigttl">Join the World's<br><em>Business</em> Elite</div>
+        <div class="auth-bigsub">Create your account and connect with thousands of business leaders, investors, and innovators worldwide.</div>
+        <div class="auth-feats">
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Free access to business intelligence</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">List your business for free</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Connect with global professionals</span></div>
+          <div class="auth-feat"><span class="auth-feat-chk">✦</span><span class="auth-feat-t">Upgrade anytime to Premium</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-logo">RACKY<span>WEB</span></div>
+      <div class="auth-h">Create account</div>
+      <div class="auth-sub">Join the global business community today.</div>
+      <div class="auth-form">
+        <button class="auth-soc-btn"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>Sign up with Google</button>
+        <div class="auth-divider">or</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="fg"><label class="fl">First Name</label><input class="fi2" type="text" placeholder="John"></div>
+          <div class="fg"><label class="fl">Last Name</label><input class="fi2" type="text" placeholder="Smith"></div>
+        </div>
+        <div class="fg"><label class="fl">Business Email</label><input class="fi2" type="email" placeholder="you@company.com"></div>
+        <div class="fg"><label class="fl">Password</label><input class="fi2" type="password" placeholder="Create a strong password"></div>
+        <button class="auth-submit" onclick="go('dashboard');toast('Account created! Welcome to RACKYWEB ✓')">Create Account</button>
+        <p style="font-size:11px;color:var(--g4);text-align:center">By creating an account you agree to our <a href="#" style="color:var(--gold-dark)">Terms of Service</a> and <a href="#" style="color:var(--gold-dark)">Privacy Policy</a>.</p>
+      </div>
+      <div class="auth-switch">Already have an account? <a href="#" onclick="go('login')">Sign in →</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     PRICING PAGE
+══════════════════════════════════════════════════ -->
+<div id="page-pricing" class="page">
+  <div class="ph"><div class="phi"><div class="ph-tag">Transparent Pricing</div><h1 class="ph-title">Simple, Honest Pricing for Every Business</h1><p class="ph-sub">Whether you're a solo founder or a global enterprise — we have a plan for your ambitions.</p></div></div>
+  <div class="pricing-grid">
+    <div class="pc"><div class="pc-tier">Starter</div><div class="pc-price"><span class="pc-cur">$</span>0<span class="pc-per">/mo</span></div><div class="pc-desc">Perfect for founders and individuals exploring the platform.</div><ul class="pc-feats"><li class="pc-feat"><span class="pc-feat-ico">✓</span>1 free business listing</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Access to blog &amp; articles</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Basic dashboard</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Community access</li><li class="pc-feat off"><span class="pc-feat-ico">—</span>Verified badge</li><li class="pc-feat off"><span class="pc-feat-ico">—</span>Featured listing</li><li class="pc-feat off"><span class="pc-feat-ico">—</span>Priority support</li></ul><button class="pc-btn" onclick="go('signup')">Get Started Free</button></div>
+    <div class="pc pop"><div class="pc-pop-tag">✦ Most Popular</div><div class="pc-tier">Growth</div><div class="pc-price"><span class="pc-cur">$</span>79<span class="pc-per">/mo</span></div><div class="pc-desc">Built for growing businesses that want real visibility and connections.</div><ul class="pc-feats"><li class="pc-feat"><span class="pc-feat-ico">✓</span>5 verified listings</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Verified business badge</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Featured placement</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Advanced analytics</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Article publishing</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Priority support</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Newsletter inclusion</li></ul><button class="pc-btn" onclick="go('signup')">Start 14-Day Trial</button></div>
+    <div class="pc"><div class="pc-tier">Enterprise</div><div class="pc-price"><span class="pc-cur">$</span>299<span class="pc-per">/mo</span></div><div class="pc-desc">For established enterprises demanding maximum impact and custom solutions.</div><ul class="pc-feats"><li class="pc-feat"><span class="pc-feat-ico">✓</span>Unlimited listings</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>All Growth features</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Custom brand integration</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Dedicated account manager</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>API access</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Sponsored content slots</li><li class="pc-feat"><span class="pc-feat-ico">✓</span>Executive introductions</li></ul><button class="pc-btn" onclick="go('contact')">Contact Sales</button></div>
+  </div>
+  <div class="pricing-trust">
+    <div class="pt-item"><div class="pt-val">14-day</div><div class="pt-lbl">Free Trial</div></div>
+    <div class="pt-item"><div class="pt-val">No lock-in</div><div class="pt-lbl">Cancel Anytime</div></div>
+    <div class="pt-item"><div class="pt-val">24/7</div><div class="pt-lbl">Support</div></div>
+    <div class="pt-item"><div class="pt-val">256-bit</div><div class="pt-lbl">SSL Encryption</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════ -->
+<script>
+/* ─── ROUTING ─────────────────────────────────── */
+const LIGHT_PAGES = ['blog','article','marketplace','about','partner','contact','pricing','dashboard','admin','login','signup'];
+let cur = 'home';
+
+function go(page) {
+  if (page === cur) { closeMob(); return; }
+  const pt = document.getElementById('pt');
+  pt.classList.add('in');
+  setTimeout(() => {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const el = document.getElementById('page-' + page);
+    if (el) { el.classList.add('active'); cur = page; }
+    window.scrollTo(0,0);
+    setNav(page);
+    updateLinks(page);
+    closeMob();
+    pt.classList.remove('in');
+    pt.classList.add('out');
+    setTimeout(() => pt.classList.remove('out'), 500);
+    triggerReveal();
+  }, 280);
+}
+
+function setNav(page) {
+  const nav = document.getElementById('nav');
+  if (LIGHT_PAGES.includes(page)) {
+    nav.classList.add('light');
+    nav.classList.remove('scrolled');
+  } else {
+    nav.classList.remove('light');
+    if (window.scrollY < 80) nav.classList.remove('scrolled');
+  }
+}
+
+function updateLinks(page) {
+  document.querySelectorAll('.nav-link').forEach(l => {
+    l.classList.remove('on');
+    const oc = l.getAttribute('onclick') || '';
+    if (oc.includes("'"+page+"'")) l.classList.add('on');
+  });
+}
+
+/* ─── SCROLL ─────────────────────────────────── */
+window.addEventListener('scroll', () => {
+  const sy = window.scrollY;
+  const nav = document.getElementById('nav');
+  const docH = document.documentElement.scrollHeight - window.innerHeight;
+  document.getElementById('pbar').style.width = (docH > 0 ? sy/docH*100 : 0) + '%';
+  if (cur === 'home') {
+    nav.classList.toggle('scrolled', sy > 80);
+  }
+  triggerReveal();
+  triggerCounters();
+  triggerBars();
+  triggerHeroCnts();
+});
+
+function triggerReveal() {
+  document.querySelectorAll('.rv:not(.vis)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 70) el.classList.add('vis');
+  });
+}
+
+function triggerCounters() {
+  document.querySelectorAll('.cu:not(.done)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 60) { animCount(el); el.classList.add('done'); }
+  });
+}
+
+function triggerBars() {
+  document.querySelectorAll('.stat-fill:not(.done)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) { el.style.width = el.dataset.w + '%'; el.classList.add('done'); }
+  });
+}
+
+function triggerHeroCnts() {
+  document.querySelectorAll('[data-cnt]:not(.done2)').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) { animHero(el); el.classList.add('done2'); }
+  });
+}
+
+function animCount(el) {
+  const target = parseInt(el.dataset.count);
+  const dur = 1800; const start = performance.now();
+  const run = now => {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,3);
+    el.textContent = Math.floor(e*target).toLocaleString();
+    if (p<1) requestAnimationFrame(run); else el.textContent = target.toLocaleString();
+  };
+  requestAnimationFrame(run);
+}
+
+function animHero(el) {
+  const target = parseInt(el.dataset.cnt);
+  const dur = 2000; const start = performance.now();
+  const run = now => {
+    const p = Math.min((now-start)/dur,1);
+    const e = 1-Math.pow(1-p,4);
+    el.textContent = Math.floor(e*target);
+    if (p<1) requestAnimationFrame(run); else el.textContent = target;
+  };
+  requestAnimationFrame(run);
+}
+
+/* ─── MOBILE MENU ─────────────────────────────── */
+function toggleMob() { document.getElementById('mobMenu').classList.toggle('open'); }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+/* ─── CAROUSEL ─────────────────────────────────── */
+let carIdx = 0;
+const SLIDE_W = 404;
+
+function carSlide(d) {
+  const track = document.getElementById('carTrack');
+  if (!track) return;
+  carIdx = Math.max(0, Math.min(carIdx + d, track.children.length - 1));
+  track.style.transform = `translateX(-${carIdx * SLIDE_W}px)`;
+  updateCarDots();
+}
+
+function carGo(i) {
+  carIdx = i;
+  const track = document.getElementById('carTrack');
+  if (track) track.style.transform = `translateX(-${carIdx * SLIDE_W}px)`;
+  updateCarDots();
+}
+
+function updateCarDots() {
+  document.querySelectorAll('.car-dot').forEach((d,i) => d.classList.toggle('on', i===carIdx));
+}
+
+// Auto-advance carousel
+setInterval(() => { if (cur === 'home') { const track = document.getElementById('carTrack'); if(track){ carIdx = (carIdx+1) % track.children.length; track.style.transform=`translateX(-${carIdx*SLIDE_W}px)`; updateCarDots(); } } }, 5000);
+
+/* ─── PARTICLES ─────────────────────────────────── */
+function spawnParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*8}s;width:${1+Math.random()*2}px;height:${1+Math.random()*2}px;`;
+    container.appendChild(p);
+  }
+}
+spawnParticles();
+
+/* ─── TOAST ─────────────────────────────────────── */
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastTxt').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+/* ─── MODAL ─────────────────────────────────────── */
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('.modal-ov').forEach(ov => {
+  ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('open'); });
+});
+
+/* ─── BLOG FILTER ───────────────────────────────── */
+function bFilter(btn) {
+  document.querySelectorAll('.fb').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* ─── MARKETPLACE FILTER ────────────────────────── */
+function mpFilter(btn) {
+  document.querySelectorAll('.cf').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+/* ─── INIT ──────────────────────────────────────── */
+// Run reveal on first page load
+setTimeout(triggerReveal, 100);
+setTimeout(triggerHeroCnts, 400);
+
+// Duplicate ticker for seamless loop
+const ticker = document.getElementById('ticker');
+if (ticker) ticker.innerHTML += ticker.innerHTML;
+
+// Dashboard sidebar nav click
+document.querySelectorAll('.dsb-item').forEach(item => {
+  item.addEventListener('click', function() {
+    this.closest('.dsb-nav').querySelectorAll('.dsb-item').forEach(i => i.classList.remove('on'));
+    this.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>
