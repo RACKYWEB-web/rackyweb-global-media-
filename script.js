@@ -13,7 +13,7 @@ async function signInWithGoogle() {
     const { error } = await window.supabaseClient.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin
+        redirectTo: "https://rackyweb-web.github.io/rackyweb-global-media-/"
       }
     });
 
