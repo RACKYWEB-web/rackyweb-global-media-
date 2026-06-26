@@ -323,6 +323,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+supabase.auth.getUser().then(({ data: { user } }) => {
+  console.log("USER:", user);
+
+  if (user) {
+    alert("Logged in as: " + user.email);
+  }
+});
+
 // Initial page setup
 window.addEventListener('load', () => {
   setNav('home');
